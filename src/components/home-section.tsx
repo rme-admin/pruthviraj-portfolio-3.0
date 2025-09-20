@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowDown, Download } from 'lucide-react';
+import { ArrowDown, Download, FileText } from 'lucide-react';
 
 export default function HomeSection() {
   const profileImage = PlaceHolderImages.find(p => p.id === 'profile-picture');
@@ -32,10 +32,13 @@ export default function HomeSection() {
                 A passionate Senior Software Engineer transforming complex problems into elegant, user-centric solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg">
-                    <Link href="#projects">View My Work</Link>
+                <Button asChild size="lg" variant="outline">
+                    <Link href="/cover-letter.pdf" target="_blank" download>
+                        Download Cover Letter
+                        <FileText className="ml-2 h-4 w-4" />
+                    </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
+                <Button asChild size="lg">
                     <Link href="/cv.pdf" target="_blank" download>
                         Download CV
                         <Download className="ml-2 h-4 w-4" />

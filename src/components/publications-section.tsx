@@ -41,7 +41,7 @@ export default function PublicationsSection() {
                             <CardContent className="pt-0 px-4 pb-4">
                                 <Accordion type="single" collapsible className="w-full">
                                     <AccordionItem value="item-1">
-                                        <AccordionTrigger>Details</AccordionTrigger>
+                                        <AccordionTrigger className="pt-0">Details</AccordionTrigger>
                                         <AccordionContent>
                                             <div className="space-y-4">
                                                 <div>

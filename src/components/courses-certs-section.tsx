@@ -21,10 +21,13 @@ export default function CoursesCertsSection() {
                     <CardContent>
                         <ul className="space-y-4">
                             {certifications.map((cert, i) => (
-                                <li key={i} className="flex items-center justify-between">
-                                    <span className="text-muted-foreground">{cert.name}</span>
+                                <li key={i} className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+                                    <div>
+                                        <p className="font-semibold">{cert.name}</p>
+                                        <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                                    </div>
                                     {cert.url && (
-                                        <Button asChild variant="link" className="p-0 h-auto">
+                                        <Button asChild variant="link" className="p-0 h-auto mt-2 sm:mt-0">
                                             <Link href={cert.url} target="_blank" rel="noopener noreferrer">
                                                 View Certificate
                                                 <ArrowUpRight className="ml-1 h-4 w-4" />

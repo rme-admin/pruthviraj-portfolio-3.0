@@ -25,7 +25,7 @@ export default function PublicationsSection() {
                 <div className="space-y-8">
                     {publications.map((pub, index) => (
                         <Card key={index}>
-                            <CardHeader>
+                            <CardHeader className="p-4">
                                 <CardTitle>{pub.title}</CardTitle>
                                 <CardDescription className="space-y-1">
                                     <p><span className="font-semibold">Authors:</span> {pub.authors}</p>
@@ -38,7 +38,7 @@ export default function PublicationsSection() {
                                     </p>
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent className="pt-0 px-6 pb-6">
+                            <CardContent className="pt-0 px-4 pb-4">
                                 <Accordion type="single" collapsible className="w-full">
                                     <AccordionItem value="item-1">
                                         <AccordionTrigger>Details</AccordionTrigger>

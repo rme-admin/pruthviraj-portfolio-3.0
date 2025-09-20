@@ -98,9 +98,38 @@ export const honorsAndAwards = [
   'Dean\'s List, University of Technology',
 ];
 
-export const publications = [
-  '"Optimizing Convolutional Neural Networks for Image Recognition", AI Journal, 2020',
-  '"A Novel Approach to Distributed Data Processing", Proceedings of Big Data Conf, 2021',
+export interface Publication {
+    title: string;
+    authors: string;
+    venue: string;
+    date: string;
+    doi: string;
+    summary: string;
+    myRole: string;
+    impact: string;
+}
+
+export const publications: Publication[] = [
+    {
+        title: "A Novel Approach to Distributed Data Processing",
+        authors: "J. Smith, A. Pruthviraj, L. Chen",
+        venue: "Proceedings of Big Data Conf, 2021",
+        date: "October 2021",
+        doi: "10.1234/bigdata.2021.67890",
+        summary: "This paper introduces a scalable framework for distributed data processing that significantly reduces latency and computational cost compared to existing solutions.",
+        myRole: "I co-developed the core framework, designed and executed the performance benchmarks, and contributed to the final manuscript.",
+        impact: "Adopted by several teams at Data Systems Inc., resulting in a 20% improvement in system efficiency."
+    },
+    {
+        title: "Optimizing Convolutional Neural Networks for Image Recognition",
+        authors: "J. Doe, S. Lee, M. Garcia",
+        venue: "AI Journal, 2020",
+        date: "June 2020",
+        doi: "10.1234/aij.2020.12345",
+        summary: "This research proposes a new pruning technique for CNNs that reduces model size by 40% with minimal loss in accuracy.",
+        myRole: "I was the primary researcher, responsible for the conceptualization of the pruning algorithm, its implementation, and the experimental validation.",
+        impact: "Presented at the International Conference on AI. The pruning method is now a part of our internal ML library."
+    }
 ];
 
 export const projects = [

@@ -1,10 +1,14 @@
+import Link from 'next/link';
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
+    CardDescription
 } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { publications } from '@/lib/data';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function PublicationsSection() {
     return (
@@ -13,14 +17,40 @@ export default function PublicationsSection() {
                 <div className="text-center mb-16">
                     <h2 className="font-headline text-4xl md:text-5xl font-bold">Publications</h2>
                 </div>
-                <Card>
-                    <CardHeader><CardTitle>Publications</CardTitle></CardHeader>
-                    <CardContent>
-                        <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                            {publications.map((pub, i) => <li key={i}>{pub}</li>)}
-                        </ul>
-                    </CardContent>
-                </Card>
+                <div className="space-y-8">
+                    {publications.map((pub, index) => (
+                        <Card key={index}>
+                            <CardHeader>
+                                <CardTitle>{pub.title}</CardTitle>
+                                <CardDescription>
+                                    <p><span className="font-semibold">Authors:</span> {pub.authors}</p>
+                                    <p><span className="font-semibold">Venue:</span> {pub.venue}</p>
+                                    <p><span className="font-semibold">Date:</span> {pub.date}</p>
+                                    <p>
+                                        <span className="font-semibold">DOI:</span>{' '}
+                                        <Link href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                                            {pub.doi} <ArrowUpRight className="inline-block h-4 w-4" />
+                                        </Link>
+                                    </p>
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div>
+                                    <h4 className="font-semibold">Summary:</h4>
+                                    <p className="text-muted-foreground">{pub.summary}</p>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold">My Role:</h4>
+                                    <p className="text-muted-foreground">{pub.myRole}</p>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold">Impact:</h4>
+                                    <p className="text-muted-foreground">{pub.impact}</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
             </div>
         </section>
     );

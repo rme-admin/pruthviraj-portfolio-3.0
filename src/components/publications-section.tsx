@@ -25,7 +25,7 @@ export default function PublicationsSection() {
                 <div className="space-y-8">
                     {publications.map((pub, index) => (
                         <Card key={index}>
-                            <CardHeader className="p-4">
+                            <CardHeader className="p-4 pb-0">
                                 <CardTitle>{pub.title}</CardTitle>
                                 <CardDescription className="space-y-1">
                                     <p><span className="font-semibold">Authors:</span> {pub.authors}</p>

@@ -85,7 +85,15 @@ export const adminNavigationLinks: NavLink[] = [
             { name: 'Add Certification', href: '/admin/courses/new', icon: Plus },
         ]
     },
-    { name: 'References', href: '/admin/references', icon: Users },
+    {
+        name: 'References',
+        href: '/admin/references',
+        icon: Users,
+        sublinks: [
+            { name: 'List References', href: '/admin/references', icon: List },
+            { name: 'Add Reference', href: '/admin/references/new', icon: Plus },
+        ]
+    },
     { name: 'Enquiries', href: '/admin/enquiries', icon: Mail },
     { name: 'Social Media', href: '/admin/social', icon: Users },
     {

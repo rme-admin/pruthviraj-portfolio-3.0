@@ -103,6 +103,7 @@ export interface SocialLink {
 }
 
 export interface Reference {
+  id: string;
   fullName: string;
   designation: string;
   organization: string;

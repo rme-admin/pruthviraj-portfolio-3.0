@@ -150,6 +150,7 @@
   ],
   "references": [
     {
+      "id": "ref-1",
       "fullName": "Dr. Emily Carter",
       "designation": "Professor of Computer Science",
       "organization": "University of Technology",
@@ -158,6 +159,7 @@
       "phone": "+1-123-456-7890"
     },
     {
+      "id": "ref-2",
       "fullName": "Michael Chen",
       "designation": "Lead Software Architect",
       "organization": "Innovatech Solutions",

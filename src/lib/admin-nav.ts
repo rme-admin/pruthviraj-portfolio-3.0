@@ -17,6 +17,7 @@ import {
     LucideIcon,
     User,
     Award,
+    Link as LinkIcon,
 } from 'lucide-react';
 
 export interface NavLink {
@@ -71,4 +72,5 @@ export const adminNavigationLinks: NavLink[] = [
         href: '/admin/media',
         icon: Image,
     },
+    { name: 'Social Links', href: '/admin/social', icon: LinkIcon },
 ];

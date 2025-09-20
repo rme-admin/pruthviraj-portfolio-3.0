@@ -142,11 +142,11 @@
       { "icon": "MapPin", "text": "San Francisco, CA" }
   ],
   "socialLinks": [
-      { "name": "LinkedIn", "url": "https://www.linkedin.com/" },
-      { "name": "Medium", "url": "https://medium.com/" },
-      { "name": "X", "url": "https://x.com/" },
-      { "name": "Instagram", "url": "https://www.instagram.com/" },
-      { "name": "ResearchGate", "url": "https://www.researchgate.net/" }
+      { "id": "social-1", "name": "LinkedIn", "url": "https://www.linkedin.com/" },
+      { "id": "social-2", "name": "Medium", "url": "https://medium.com/" },
+      { "id": "social-3", "name": "X", "url": "https://x.com/" },
+      { "id": "social-4", "name": "Instagram", "url": "https://www.instagram.com/" },
+      { "id": "social-5", "name": "ResearchGate", "url": "https://www.researchgate.net/" }
   ],
   "references": [
     {
@@ -193,6 +193,7 @@
       "id": "enq-1",
       "name": "Alice Johnson",
       "email": "alice.j@example.com",
+      "phone": "123-456-7890",
       "designation": "Recruiter",
       "enquiryType": "Inviting for an interview",
       "message": "Hi there, we were impressed with your profile and would like to schedule an interview for a Senior Engineer position at our company. Are you available sometime next week?",

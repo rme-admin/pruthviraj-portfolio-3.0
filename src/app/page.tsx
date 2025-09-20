@@ -2,7 +2,6 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import HomeSection from '@/components/home-section';
 import AboutSection from '@/components/about-section';
-import ProjectsSection from '@/components/projects-section';
 import PublicationsSection from '@/components/publications-section';
 import AchievementsSection from '@/components/achievements-section';
 import SkillsSection from '@/components/skills-section';
@@ -22,7 +21,6 @@ export default function Home() {
         <AboutSection />
         <EducationSection />
         <ExperienceSection />
-        <ProjectsSection />
         <PublicationsSection />
         <AchievementsSection />
         <SkillsSection />

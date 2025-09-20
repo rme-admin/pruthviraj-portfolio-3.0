@@ -15,10 +15,6 @@ export const navigationLinks: NavigationLink[] = [
   { name: 'About', href: '#about' },
   { name: 'Education', href: '#education' },
   { name: 'Experience', href: '#experience' },
-  {
-    name: 'Projects',
-    href: '#projects',
-  },
   { name: 'Publications', href: '#publications' },
   { name: 'Achievements', href: '#achievements' },
   { name: 'Skills', href: '#skills' },

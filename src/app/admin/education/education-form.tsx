@@ -48,6 +48,8 @@ export default function EducationForm({ education }: EducationFormProps) {
     },
   });
 
+  const marksType = form.watch('marksType');
+
   function onSubmit(data: EducationFormValues) {
     console.log(data);
     // Here you would handle form submission, e.g., send to a server
@@ -138,25 +140,27 @@ export default function EducationForm({ education }: EducationFormProps) {
                         <FormItem>
                         <FormLabel>Marks Scored</FormLabel>
                         <FormControl>
-                            <Input placeholder="E.g., 8.5" {...field} />
+                            <Input placeholder="E.g., 8.5 or 85" {...field} />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
                     )}
                 />
-                 <FormField
-                    control={form.control}
-                    name="marksOutOf"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>Out Of</FormLabel>
-                        <FormControl>
-                            <Input placeholder="E.g., 10" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                 {marksType === 'cgpa' && (
+                    <FormField
+                        control={form.control}
+                        name="marksOutOf"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Out Of</FormLabel>
+                            <FormControl>
+                                <Input placeholder="E.g., 10" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                 )}
             </div>
         </div>
         <FormField

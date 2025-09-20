@@ -46,7 +46,10 @@ export const educationColumns: ColumnDef<Education>[] = [
     cell: ({ row }) => {
       const education = row.original
       if (!education.marksScored) return null;
-      const marksString = education.marksOutOf 
+      
+      const marksString = education.marksType === 'percentage'
+        ? `${education.marksScored}%`
+        : education.marksOutOf
         ? `${education.marksScored} / ${education.marksOutOf}`
         : education.marksScored;
 

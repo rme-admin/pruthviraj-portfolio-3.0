@@ -19,7 +19,7 @@ import type { Certification } from '@/lib/data';
 const courseFormSchema = z.object({
   name: z.string().min(2, 'Course name must be at least 2 characters.'),
   issuer: z.string().min(2, 'Issuer must be at least 2 characters.'),
-  url: z.string().url('Please enter a valid URL.').optional().or(z.literal('')),
+  certificateFile: z.any().optional(),
 });
 
 type CourseFormValues = z.infer<typeof courseFormSchema>;
@@ -34,7 +34,6 @@ export default function CourseForm({ certification }: CourseFormProps) {
     defaultValues: {
       name: certification?.name || '',
       issuer: certification?.issuer || '',
-      url: certification?.url || '',
     },
   });
 
@@ -74,12 +73,12 @@ export default function CourseForm({ certification }: CourseFormProps) {
         />
         <FormField
             control={form.control}
-            name="url"
+            name="certificateFile"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Certificate URL</FormLabel>
+                <FormLabel>Certificate File</FormLabel>
                 <FormControl>
-                    <Input placeholder="https://example.com/certificate/123" {...field} />
+                    <Input type="file" {...field} />
                 </FormControl>
                 <FormMessage />
                 </FormItem>

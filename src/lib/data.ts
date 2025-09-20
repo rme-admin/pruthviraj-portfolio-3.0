@@ -69,7 +69,7 @@ export interface Certification {
     id: string;
     name: string;
     issuer: string;
-    url: string;
+    certificateFile: string;
 }
 
 export interface Publication {

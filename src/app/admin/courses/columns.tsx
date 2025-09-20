@@ -36,12 +36,12 @@ export const courseColumns: ColumnDef<Certification>[] = [
     header: "Issuer",
   },
   {
-    accessorKey: "url",
-    header: "URL",
+    accessorKey: "certificateFile",
+    header: "File",
     cell: ({ row }) => {
-        const url = row.original.url;
-        if (!url || url === '#') return <span>No URL</span>
-        return <a href={url} target="_blank" rel="noreferrer" className="text-primary hover:underline">View Certificate</a>
+        const file = row.original.certificateFile;
+        if (!file || file === '#') return <span>No File</span>
+        return <a href={file} target="_blank" rel="noreferrer" className="text-primary hover:underline">View Certificate</a>
     }
   },
   {

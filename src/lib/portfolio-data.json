@@ -187,5 +187,25 @@
       "caption": "Volunteering Day",
       "description": "Volunteering with my colleagues to clean up a local park."
     }
+  ],
+  "enquiries": [
+    {
+      "id": "enq-1",
+      "name": "Alice Johnson",
+      "email": "alice.j@example.com",
+      "designation": "Recruiter",
+      "enquiryType": "Inviting for an interview",
+      "message": "Hi there, we were impressed with your profile and would like to schedule an interview for a Senior Engineer position at our company. Are you available sometime next week?",
+      "date": "2024-05-20"
+    },
+    {
+      "id": "enq-2",
+      "name": "Bob Williams",
+      "email": "bob.w@university.edu",
+      "designation": "Student",
+      "enquiryType": "Requesting for LOR",
+      "message": "Dear Professor, I am applying for a Master's program and was hoping you could provide a letter of recommendation for me. I have attached my resume for your reference. Thank you!",
+      "date": "2024-05-18"
+    }
   ]
 }

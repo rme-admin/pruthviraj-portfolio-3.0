@@ -124,6 +124,17 @@ export interface Achievement {
     description: string;
 }
 
+export interface Enquiry {
+    id: string;
+    name: string;
+    email: string;
+    phone?: string;
+    designation: string;
+    enquiryType: string;
+    message: string;
+    date: string;
+}
+
 
 export const skills: Skill[] = data.skills;
 export const education: Education[] = data.education;
@@ -137,3 +148,4 @@ export const contactInfo: ContactInfo[] = data.contactInfo;
 export const socialLinks: SocialLink[] = data.socialLinks;
 export const references: Reference[] = data.references;
 export const media: MediaItem[] = data.media;
+export const enquiries: Enquiry[] = data.enquiries;

@@ -34,65 +34,37 @@ export const adminNavigationLinks: NavLink[] = [
         name: 'Projects',
         href: '/admin/projects',
         icon: List,
-        sublinks: [
-            { name: 'List Projects', href: '/admin/projects', icon: List },
-            { name: 'Add Project', href: '/admin/projects/new', icon: Plus },
-        ]
     },
     {
         name: 'Education',
         href: '/admin/education',
         icon: BookOpen,
-        sublinks: [
-            { name: 'List Education', href: '/admin/education', icon: List },
-            { name: 'Add Education', href: '/admin/education/new', icon: Plus },
-        ]
     },
     {
         name: 'Experience',
         href: '/admin/experience',
         icon: Trophy,
-        sublinks: [
-            { name: 'List Experience', href: '/admin/experience', icon: List },
-            { name: 'Add Experience', href: '/admin/experience/new', icon: Plus },
-        ]
     },
     {
         name: 'Publications',
         href: '/admin/publications',
         icon: BookCopy,
-        sublinks: [
-            { name: 'List Publications', href: '/admin/publications', icon: List },
-            { name: 'Add Publication', href: '/admin/publications/new', icon: Plus },
-        ]
     },
     {
         name: 'Achievements',
         href: '/admin/achievements',
         icon: Medal,
-        sublinks: [
-            { name: 'List Achievements', href: '/admin/achievements', icon: List },
-            { name: 'Add Achievement', href: '/admin/achievements/new', icon: Plus },
-        ]
     },
     { name: 'Skills', href: '/admin/skills', icon: Sparkles },
     {
         name: 'Courses & Certs',
         href: '/admin/courses',
         icon: Award,
-        sublinks: [
-            { name: 'List Certifications', href: '/admin/courses', icon: List },
-            { name: 'Add Certification', href: '/admin/courses/new', icon: Plus },
-        ]
     },
     {
         name: 'References',
         href: '/admin/references',
         icon: Users,
-        sublinks: [
-            { name: 'List References', href: '/admin/references', icon: List },
-            { name: 'Add Reference', href: '/admin/references/new', icon: Plus },
-        ]
     },
     { name: 'Enquiries', href: '/admin/enquiries', icon: Mail },
     { name: 'Social Media', href: '/admin/social', icon: Users },

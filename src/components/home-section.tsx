@@ -8,7 +8,7 @@ export default function HomeSection() {
   const profileImage = PlaceHolderImages.find(p => p.id === 'profile-picture');
 
   return (
-    <section id="home" className="relative h-[80vh] min-h-[600px] w-full flex items-center justify-center text-center bg-background overflow-hidden pt-8 md:pt-12 pb-12">
+    <section id="home" className="relative h-[80vh] min-h-[500px] w-full flex items-center justify-center text-center bg-background overflow-hidden pt-12 pb-10">
       <div className="absolute inset-0 bg-grid-slate-200/50 [mask-image:linear-gradient(to_bottom,white_20%,transparent_100%)] dark:bg-grid-slate-900/50"></div>
        <div className="container relative z-10 mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center">

@@ -28,7 +28,6 @@ export interface NavLink {
 
 export const adminNavigationLinks: NavLink[] = [
     { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-    { name: 'Site Settings', href: '/admin/settings', icon: Settings },
     { name: 'My Info', href: '/admin/my-info', icon: User },
     {
         name: 'Projects',
@@ -67,14 +66,9 @@ export const adminNavigationLinks: NavLink[] = [
         icon: Users,
     },
     { name: 'Enquiries', href: '/admin/enquiries', icon: Mail },
-    { name: 'Social Media', href: '/admin/social', icon: Users },
     {
         name: 'Media',
         href: '/admin/media',
         icon: Image,
-        sublinks: [
-            { name: 'List Media', href: '/admin/media', icon: List },
-            { name: 'Add Media', href: '/admin/media/new', icon: Plus },
-        ]
     },
 ];

@@ -34,6 +34,7 @@ export default function MyInfoPage() {
                       <SelectItem value="Mr.">Mr.</SelectItem>
                       <SelectItem value="Ms.">Ms.</SelectItem>
                       <SelectItem value="Dr.">Dr.</SelectItem>
+                      <SelectItem value="Prof.">Prof.</SelectItem>
                       <SelectItem value="Miss">Miss</SelectItem>
                       <SelectItem value="Mrs.">Mrs.</SelectItem>
                       <SelectItem value="Master">Master</SelectItem>

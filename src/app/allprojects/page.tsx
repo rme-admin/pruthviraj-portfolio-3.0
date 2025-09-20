@@ -15,7 +15,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { projects, researchProjects } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowUpRight, ArrowLeft } from 'lucide-react';
+import { ArrowUpRight, Calendar, MapPin } from 'lucide-react';
 import Header from './header';
 import Footer from '@/components/layout/footer';
 
@@ -74,6 +74,16 @@ export default function AllProjectsPage() {
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <p>{project.description}</p>
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
+                      <div className="flex items-center gap-1.5">
+                          <Calendar className="h-4 w-4" />
+                          <span>{project.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                          <MapPin className="h-4 w-4" />
+                          <span>{project.location}</span>
+                      </div>
+                  </div>
                 </CardContent>
               </Card>
             );
@@ -101,6 +111,16 @@ export default function AllProjectsPage() {
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <CardDescription>{project.description}</CardDescription>
+                   <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
+                      <div className="flex items-center gap-1.5">
+                          <Calendar className="h-4 w-4" />
+                          <span>{project.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                          <MapPin className="h-4 w-4" />
+                          <span>{project.location}</span>
+                      </div>
+                  </div>
                 </CardContent>
                 <CardFooter>
                   <Button asChild variant="link" className="p-0 h-auto">

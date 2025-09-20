@@ -74,16 +74,28 @@ export const experiences = [
   },
 ];
 
-export const researchProjects = [
+export interface ResearchProject {
+  title: string;
+  description: string;
+  imageUrlId: string;
+  date: string;
+  location: string;
+}
+
+export const researchProjects: ResearchProject[] = [
     {
         title: 'Advanced AI for Predictive Analytics',
         description: 'A project exploring the use of deep learning models to predict market trends with high accuracy.',
         imageUrlId: 'research-1',
+        date: '10/2023',
+        location: 'University of Technology'
     },
     {
         title: 'Quantum Computing Simulations',
         description: 'Simulating quantum algorithms on classical computers to test their potential applications in cryptography.',
         imageUrlId: 'research-2',
+        date: '08/2022',
+        location: 'Tech Conference 2022'
     }
 ];
 
@@ -124,30 +136,47 @@ export const publications: Publication[] = [
     }
 ];
 
-export const projects = [
+export interface Project {
+  title: string;
+  description: string;
+  imageUrlId: string;
+  url: string;
+  date: string;
+  location: string;
+}
+
+export const projects: Project[] = [
   {
     title: 'E-commerce Platform',
     description: 'A full-stack e-commerce site with features like product search, cart, and payment integration.',
     imageUrlId: 'project-1',
     url: '#',
+    date: '05/2024',
+    location: 'Personal Project'
   },
   {
     title: 'Task Management App',
     description: 'A mobile-friendly application to help users organize their daily tasks and improve productivity.',
     imageUrlId: 'project-2',
     url: '#',
+    date: '01/2024',
+    location: 'Client Work'
   },
   {
     title: 'Data Dashboard',
     description: 'A web-based dashboard for visualizing complex datasets with interactive charts and graphs.',
     imageUrlId: 'project-3',
     url: '#',
+    date: '11/2023',
+    location: 'Innovatech Solutions'
   },
   {
     title: 'AI Chatbot',
     description: 'A machine learning-powered chatbot for customer service, integrated with a messaging platform.',
     imageUrlId: 'project-4',
     url: '#',
+    date: '09/2023',
+    location: 'Data Systems Inc.'
   },
 ];
 

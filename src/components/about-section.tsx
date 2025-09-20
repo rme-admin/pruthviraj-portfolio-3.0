@@ -18,7 +18,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { projects, researchProjects } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowUpRight, ChevronsLeftRight } from 'lucide-react';
+import { ArrowUpRight, ChevronsLeftRight, Calendar, MapPin } from 'lucide-react';
 
 export default function AboutSection() {
     return (
@@ -65,6 +65,16 @@ export default function AboutSection() {
                                                         </CardHeader>
                                                         <CardContent className="flex-grow">
                                                             <CardDescription>{project.description}</CardDescription>
+                                                             <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
+                                                                <div className="flex items-center gap-1.5">
+                                                                    <Calendar className="h-4 w-4" />
+                                                                    <span>{project.date}</span>
+                                                                </div>
+                                                                <div className="flex items-center gap-1.5">
+                                                                    <MapPin className="h-4 w-4" />
+                                                                    <span>{project.location}</span>
+                                                                </div>
+                                                            </div>
                                                         </CardContent>
                                                         <CardFooter>
                                                             <Button asChild variant="link" className="p-0 h-auto">
@@ -115,6 +125,16 @@ export default function AboutSection() {
                                                         </CardHeader>
                                                         <CardContent className="flex-grow">
                                                             <p>{project.description}</p>
+                                                            <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
+                                                                <div className="flex items-center gap-1.5">
+                                                                    <Calendar className="h-4 w-4" />
+                                                                    <span>{project.date}</span>
+                                                                </div>
+                                                                <div className="flex items-center gap-1.5">
+                                                                    <MapPin className="h-4 w-4" />
+                                                                    <span>{project.location}</span>
+                                                                </div>
+                                                            </div>
                                                         </CardContent>
                                                     </Card>
                                                 </div>

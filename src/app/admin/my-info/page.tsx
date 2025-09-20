@@ -16,13 +16,7 @@ import { Save } from 'lucide-react';
 export default function MyInfoPage() {
   return (
       <Card>
-        <CardHeader>
-          <CardTitle>My Info</CardTitle>
-          <CardDescription>
-            Update your personal and contact information.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-8">
+        <CardContent className="space-y-8 pt-6">
           <div className="space-y-4">
             <h3 className="text-lg font-medium">Personal Details</h3>
             <div className="grid grid-cols-1 gap-4 rounded-lg border p-4 sm:grid-cols-2">

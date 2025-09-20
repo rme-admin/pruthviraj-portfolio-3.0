@@ -14,7 +14,8 @@ import {
     Mail,
     Settings,
     Image,
-    LucideIcon
+    LucideIcon,
+    User,
 } from 'lucide-react';
 
 export interface NavLink {
@@ -27,15 +28,7 @@ export interface NavLink {
 export const adminNavigationLinks: NavLink[] = [
     { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Site Settings', href: '/admin/settings', icon: Settings },
-    {
-        name: 'Pages',
-        href: '/admin/pages',
-        icon: FileText,
-        sublinks: [
-            { name: 'Home', href: '/admin/pages/home', icon: Home },
-            { name: 'About', href: '/admin/pages/about', icon: FileText },
-        ],
-    },
+    { name: 'My Info', href: '/admin/my-info', icon: User },
     {
         name: 'Projects',
         href: '/admin/projects',

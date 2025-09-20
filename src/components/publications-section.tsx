@@ -6,7 +6,12 @@ import {
     CardTitle,
     CardDescription
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 import { publications } from '@/lib/data';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -25,7 +30,6 @@ export default function PublicationsSection() {
                                 <CardDescription>
                                     <p><span className="font-semibold">Authors:</span> {pub.authors}</p>
                                     <p><span className="font-semibold">Venue:</span> {pub.venue}</p>
-                                    <p><span className="font-semibold">Date:</span> {pub.date}</p>
                                     <p>
                                         <span className="font-semibold">DOI:</span>{' '}
                                         <Link href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
@@ -35,18 +39,23 @@ export default function PublicationsSection() {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
-                                <div>
-                                    <h4 className="font-semibold">Summary:</h4>
-                                    <p className="text-muted-foreground">{pub.summary}</p>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold">My Role:</h4>
-                                    <p className="text-muted-foreground">{pub.myRole}</p>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold">Impact:</h4>
-                                    <p className="text-muted-foreground">{pub.impact}</p>
-                                </div>
+                                <Accordion type="single" collapsible className="w-full">
+                                    <AccordionItem value="item-1">
+                                        <AccordionTrigger>Details</AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="space-y-4">
+                                                <div>
+                                                    <h4 className="font-semibold">Summary:</h4>
+                                                    <p className="text-muted-foreground">{pub.summary}</p>
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-semibold">My Role:</h4>
+                                                    <p className="text-muted-foreground">{pub.myRole}</p>
+                                                </div>
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
                             </CardContent>
                         </Card>
                     ))}

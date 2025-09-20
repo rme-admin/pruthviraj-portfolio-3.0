@@ -12,7 +12,7 @@ export interface NavigationLink {
 
 export const navigationLinks: NavigationLink[] = [
   { name: 'Home', href: '#home' },
-  { name: 'Personal Statement', href: '#personal-statement' },
+  { name: 'About', href: '#about' },
   { 
     name: 'Projects', 
     sublinks: [
@@ -20,9 +20,7 @@ export const navigationLinks: NavigationLink[] = [
       { name: 'Technical Projects', href: '#technical-projects' },
     ]
   },
-  { name: 'Education', href: '#education' },
   { name: 'Publications', href: '#publications' },
-  { name: 'Experience', href: '#experience' },
   { name: 'Achievements', href: '#achievements' },
   { name: 'Skills', href: '#skills' },
   { name: 'Courses & Certs', href: '#courses-certifications' },

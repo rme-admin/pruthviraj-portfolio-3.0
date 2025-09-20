@@ -18,7 +18,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { projects, researchProjects } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ChevronsLeftRight } from 'lucide-react';
 
 export default function AboutSection() {
     return (
@@ -83,6 +83,10 @@ export default function AboutSection() {
                                 <CarouselPrevious />
                                 <CarouselNext />
                             </Carousel>
+                            <div className="text-center mt-4 text-sm text-muted-foreground flex items-center justify-center gap-2">
+                                <ChevronsLeftRight className="h-4 w-4" />
+                                <span>Slide to view more projects</span>
+                            </div>
                         </div>
 
                         <div>
@@ -122,6 +126,10 @@ export default function AboutSection() {
                                 <CarouselPrevious />
                                 <CarouselNext />
                             </Carousel>
+                            <div className="text-center mt-4 text-sm text-muted-foreground flex items-center justify-center gap-2">
+                                <ChevronsLeftRight className="h-4 w-4" />
+                                <span>Slide to view more projects</span>
+                            </div>
                         </div>
                     </div>
 

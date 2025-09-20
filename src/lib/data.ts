@@ -80,9 +80,9 @@ export const researchProjects = [
 ];
 
 export const certifications = [
-  'Certified Kubernetes Application Developer (CKAD)',
-  'AWS Certified Solutions Architect – Associate',
-  'Google Certified Professional Data Engineer',
+  { name: 'Certified Kubernetes Application Developer (CKAD)', url: '#' },
+  { name: 'AWS Certified Solutions Architect – Associate', url: '#' },
+  { name: 'Google Certified Professional Data Engineer', url: '#' },
 ];
 
 export const honorsAndAwards = [

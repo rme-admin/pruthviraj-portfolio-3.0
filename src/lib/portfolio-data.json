@@ -1,19 +1,19 @@
 
 {
   "skills": [
-    { "name": "React", "icon": "Code", "category": "Technical" },
-    { "name": "Node.js", "icon": "Code", "category": "Technical" },
-    { "name": "Python", "icon": "Code", "category": "Technical" },
-    { "name": "C", "icon": "Code", "category": "Technical" },
-    { "name": "C++", "icon": "Code", "category": "Technical" },
-    { "name": "SQL", "icon": "Database", "category": "Technical" },
-    { "name": "TensorFlow", "icon": "BrainCircuit", "category": "Research" },
-    { "name": "Next.js", "icon": "Code", "category": "Technical" },
-    { "name": "UV-Spectroscopy", "icon": "TestTube", "category": "Research" },
-    { "name": "Gaussian", "icon": "FunctionSquare", "category": "Research" },
-    { "name": "Badminton", "icon": "Dumbbell", "category": "Hobby" },
-    { "name": "IoT", "icon": "Lightbulb", "category": "Hobby" },
-    { "name": "Agriculture", "icon": "Tractor", "category": "Hobby" }
+    { "id": "skill-1", "name": "React", "icon": "Code", "category": "Technical" },
+    { "id": "skill-2", "name": "Node.js", "icon": "Code", "category": "Technical" },
+    { "id": "skill-3", "name": "Python", "icon": "Code", "category": "Technical" },
+    { "id": "skill-4", "name": "C", "icon": "Code", "category": "Technical" },
+    { "id": "skill-5", "name": "C++", "icon": "Code", "category": "Technical" },
+    { "id": "skill-6", "name": "SQL", "icon": "Database", "category": "Technical" },
+    { "id": "skill-7", "name": "TensorFlow", "icon": "BrainCircuit", "category": "Research" },
+    { "id": "skill-8", "name": "Next.js", "icon": "Code", "category": "Technical" },
+    { "id": "skill-9", "name": "UV-Spectroscopy", "icon": "TestTube", "category": "Research" },
+    { "id": "skill-10", "name": "Gaussian", "icon": "FunctionSquare", "category": "Research" },
+    { "id": "skill-11", "name": "Badminton", "icon": "Dumbbell", "category": "Hobby" },
+    { "id": "skill-12", "name": "IoT", "icon": "Lightbulb", "category": "Hobby" },
+    { "id": "skill-13", "name": "Agriculture", "icon": "Tractor", "category": "Hobby" }
   ],
   "education": [
     {

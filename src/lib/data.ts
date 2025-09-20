@@ -30,6 +30,7 @@ export const secondaryNavigationLinks: NavigationLink[] = [
 ];
 
 export interface Skill {
+  id: string;
   name: string;
   // This will be a string representing the lucide icon name
   icon: string;

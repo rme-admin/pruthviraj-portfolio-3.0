@@ -82,6 +82,7 @@
   ],
   "publications": [
     {
+        "id": "pub-1",
         "title": "A Novel Approach to Distributed Data Processing",
         "authors": "J. Smith, A. Pruthviraj, L. Chen",
         "venue": "Proceedings of Big Data Conf, 2021",
@@ -89,6 +90,7 @@
         "summary": "This paper introduces a scalable framework for distributed data processing that significantly reduces latency and computational cost compared to existing solutions."
     },
     {
+        "id": "pub-2",
         "title": "Optimizing Convolutional Neural Networks for Image Recognition",
         "authors": "J. Doe, S. Lee, M. Garcia",
         "venue": "AI Journal, 2020",

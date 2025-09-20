@@ -20,6 +20,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import {
   Card,
   CardContent,
   CardDescription,
@@ -32,6 +39,7 @@ import { Send, Loader2 } from 'lucide-react';
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
+  enquiryType: z.string({ required_error: "Please select a reason for your enquiry."}).min(1, "Please select a reason for your enquiry."),
   message: z.string().min(10, "Message must be at least 10 characters."),
 });
 
@@ -65,6 +73,7 @@ export default function ContactSection() {
     defaultValues: {
       name: "",
       email: "",
+      enquiryType: "",
       message: "",
     },
   })
@@ -91,6 +100,7 @@ export default function ContactSection() {
     // Manually set form data from react-hook-form state
     formData.set('name', data.name);
     formData.set('email', data.email);
+    formData.set('enquiryType', data.enquiryType);
     formData.set('message', data.message);
     formAction(formData);
   };
@@ -141,6 +151,30 @@ export default function ContactSection() {
                             <FormControl>
                               <Input placeholder="your.email@example.com" {...field} />
                             </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                       <FormField
+                        control={form.control}
+                        name="enquiryType"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Reason for Enquiry</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select a reason" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="Requesting for LOR">Requesting for LOR</SelectItem>
+                                <SelectItem value="SOP">SOP</SelectItem>
+                                <SelectItem value="Resume">Resume</SelectItem>
+                                <SelectItem value="Certificate info">Certificate info</SelectItem>
+                                <SelectItem value="Other">Other</SelectItem>
+                              </SelectContent>
+                            </Select>
                             <FormMessage />
                           </FormItem>
                         )}

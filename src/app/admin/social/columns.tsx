@@ -15,8 +15,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import type { SocialLink } from '@/lib/data'
+import { socialIcons } from "@/lib/social-icons.tsx"
+import React from "react"
 
 export const socialLinkColumns: ColumnDef<SocialLink>[] = [
+  {
+    accessorKey: "icon",
+    header: "Icon",
+    cell: ({ row }) => {
+      const iconName = row.getValue("icon") as string;
+      const Icon = socialIcons[iconName];
+      return Icon ? <Icon className="h-6 w-6" /> : null;
+    }
+  },
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -70,3 +81,5 @@ export const socialLinkColumns: ColumnDef<SocialLink>[] = [
     },
   },
 ]
+
+    

@@ -1,4 +1,3 @@
-
 {
   "skills": [
     { "id": "skill-1", "name": "React", "icon": "Code", "category": "Technical" },
@@ -142,11 +141,11 @@
       { "icon": "MapPin", "text": "San Francisco, CA" }
   ],
   "socialLinks": [
-      { "id": "social-1", "name": "LinkedIn", "url": "https://www.linkedin.com/" },
-      { "id": "social-2", "name": "Medium", "url": "https://medium.com/" },
-      { "id": "social-3", "name": "X", "url": "https://x.com/" },
-      { "id": "social-4", "name": "Instagram", "url": "https://www.instagram.com/" },
-      { "id": "social-5", "name": "ResearchGate", "url": "https://www.researchgate.net/" }
+      { "id": "social-1", "name": "LinkedIn", "url": "https://www.linkedin.com/", "icon": "LinkedIn" },
+      { "id": "social-2", "name": "Medium", "url": "https://medium.com/", "icon": "Medium" },
+      { "id": "social-3", "name": "X", "url": "https://x.com/", "icon": "X" },
+      { "id": "social-4", "name": "Instagram", "url": "https://www.instagram.com/", "icon": "Instagram" },
+      { "id": "social-5", "name": "ResearchGate", "url": "https://www.researchgate.net/", "icon": "ResearchGate" }
   ],
   "references": [
     {

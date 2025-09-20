@@ -1,4 +1,3 @@
-
 import { LucideIcon } from 'lucide-react';
 import data from './portfolio-data.json';
 
@@ -101,6 +100,7 @@ export interface SocialLink {
     id: string;
     name: string;
     url: string;
+    icon: string;
 }
 
 export interface Reference {

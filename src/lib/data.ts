@@ -18,6 +18,7 @@ export const primaryNavigationLinks: NavigationLink[] = [
 ];
 
 export const secondaryNavigationLinks: NavigationLink[] = [
+  { name: 'Projects', href: '#projects' },
   { name: 'Publications', href: '#publications' },
   { name: 'Achievements', href: '#achievements' },
   { name: 'Skills', href: '#skills' },

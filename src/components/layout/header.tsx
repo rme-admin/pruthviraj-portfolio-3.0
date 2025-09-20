@@ -2,60 +2,26 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Rocket, Menu, ChevronDown, BookOpen } from 'lucide-react';
+import { Rocket, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
 import { navigationLinks } from '@/lib/data';
 
 function NavLinks({ setMobileMenuOpen }: { setMobileMenuOpen: (open: boolean) => void }) {
   const closeMenu = () => setMobileMenuOpen(false);
   
-  const projectLink = navigationLinks.find(l => l.name === 'Projects');
-  const otherLinks = navigationLinks.filter(l => l.name !== 'Projects');
-
   return (
     <>
-        {otherLinks.map((link) => (
-            <Link
-                key={link.name}
-                href={link.href!}
-                className="block text-lg py-2 px-4 rounded-md hover:bg-accent"
-                onClick={closeMenu}
-            >
-            {link.name}
-            </Link>
-        ))}
-
-        {projectLink && projectLink.sublinks && (
-            <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="projects" className="border-b-0">
-                <AccordionTrigger className="text-lg py-2 px-4 rounded-md hover:bg-accent [&[data-state=open]]:bg-accent">
-                    <div className="flex items-center gap-2">
-                        <span>{projectLink.name}</span>
-                    </div>
-                </AccordionTrigger>
-                <AccordionContent className="pl-8 pt-2">
-                    {projectLink.sublinks.map((sublink) => (
-                        <Link
-                            key={sublink.name}
-                            href={sublink.href}
-                            className="block text-base py-2 px-4 rounded-md hover:bg-accent/50"
-                            onClick={closeMenu}
-                        >
-                            {sublink.name}
-                        </Link>
-                    ))}
-                </AccordionContent>
-            </AccordionItem>
-            </Accordion>
-        )}
+      {navigationLinks.map((link) => (
+        <Link
+          key={link.name}
+          href={link.href!}
+          className="block text-lg py-2 px-4 rounded-md hover:bg-accent"
+          onClick={closeMenu}
+        >
+          {link.name}
+        </Link>
+      ))}
     </>
   );
 }

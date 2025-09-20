@@ -13,13 +13,9 @@ export interface NavigationLink {
 export const navigationLinks: NavigationLink[] = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { 
-    name: 'Projects', 
-    sublinks: [
-      { name: 'Research Projects', href: '#research-projects' },
-      { name: 'Technical Projects', href: '#technical-projects' },
-    ]
-  },
+  { name: 'Education', href: '#education' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
   { name: 'Publications', href: '#publications' },
   { name: 'Achievements', href: '#achievements' },
   { name: 'Skills', href: '#skills' },

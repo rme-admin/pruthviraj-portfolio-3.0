@@ -155,3 +155,31 @@ export const contactInfo = [
     { icon: Phone, text: '+1 (234) 567-890' },
     { icon: MapPin, text: 'San Francisco, CA' },
 ];
+
+export interface Reference {
+  fullName: string;
+  designation: string;
+  organization: string;
+  relation: string;
+  email: string;
+  phone: string;
+}
+
+export const references: Reference[] = [
+  {
+    fullName: "Dr. Emily Carter",
+    designation: "Professor of Computer Science",
+    organization: "University of Technology",
+    relation: "Thesis Advisor",
+    email: "emily.carter@example.com",
+    phone: "+1-123-456-7890"
+  },
+  {
+    fullName: "Michael Chen",
+    designation: "Lead Software Architect",
+    organization: "Innovatech Solutions",
+    relation: "Direct Supervisor",
+    email: "michael.chen@example.com",
+    phone: "+1-234-567-8901"
+  }
+];

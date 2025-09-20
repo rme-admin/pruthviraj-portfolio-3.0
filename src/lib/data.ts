@@ -21,7 +21,7 @@ export const secondaryNavigationLinks: NavigationLink[] = [
   { name: 'Publications', href: '#publications' },
   { name: 'Achievements', href: '#achievements' },
   { name: 'Skills', href: '#skills' },
-  { name: 'Courses & Certs', href: '#courses-certifications' },
+  { name: 'Courses and Certificates', href: '#courses-certifications' },
   { name: 'References', href: '#references' },
   { name: 'Contact Me', href: '#contact' },
   { name: 'Media', href: '#media' },

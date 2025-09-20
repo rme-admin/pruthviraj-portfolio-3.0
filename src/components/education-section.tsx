@@ -11,7 +11,7 @@ export default function EducationSection() {
                 <div className="relative">
                     <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-border"></div>
                     {education.map((edu, index) => (
-                        <div key={index} className="relative mb-12">
+                        <div key={index} className="relative mb-8">
                             <div className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
                                 <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
                                     <div className="bg-card p-6 rounded-lg shadow-md">

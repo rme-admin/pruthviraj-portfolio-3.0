@@ -9,7 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import { Slider } from '@/components/ui/slider';
 import { getCroppedImg } from './crop-image';
@@ -18,9 +17,10 @@ import type { Area, Point } from 'react-easy-crop/types';
 
 interface ImageCropperProps {
   onCropComplete: (croppedImage: string) => void;
+  aspect?: number;
 }
 
-export default function ImageCropper({ onCropComplete }: ImageCropperProps) {
+export default function ImageCropper({ onCropComplete, aspect = 1 }: ImageCropperProps) {
   const [open, setOpen] = useState(false);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
@@ -79,7 +79,7 @@ export default function ImageCropper({ onCropComplete }: ImageCropperProps) {
                 image={imageSrc}
                 crop={crop}
                 zoom={zoom}
-                aspect={1}
+                aspect={aspect}
                 onCropChange={setCrop}
                 onCropComplete={onCropCompleteCallback}
                 onZoomChange={setZoom}

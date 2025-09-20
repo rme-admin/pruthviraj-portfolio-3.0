@@ -167,12 +167,12 @@ export default function ProjectForm() {
               <FormLabel>Project Image</FormLabel>
               <div className="flex items-center gap-4">
                  <Avatar className="h-20 w-20 rounded-md">
-                    <AvatarImage src={projectImage || undefined} alt="Project Image" className="rounded-md" />
+                    <AvatarImage src={projectImage || undefined} alt="Project Image" className="rounded-md object-contain" />
                     <AvatarFallback className="rounded-md">
                         <ImageIcon className="h-10 w-10 text-muted-foreground" />
                     </AvatarFallback>
                 </Avatar>
-                <ImageCropper onCropComplete={setProjectImage} />
+                <ImageCropper onCropComplete={setProjectImage} aspect={3/2} />
               </div>
               <FormMessage />
             </FormItem>

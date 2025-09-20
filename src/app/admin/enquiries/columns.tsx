@@ -100,19 +100,44 @@ export const enquiryColumns: ColumnDef<Enquiry>[] = [
                 <DropdownMenuItem className="text-destructive">Delete enquiry</DropdownMenuItem>
             </DropdownMenuContent>
             </DropdownMenu>
-            <DialogContent>
+            <DialogContent className="sm:max-w-md">
                 <DialogHeader>
-                    <DialogTitle>Enquiry from {enquiry.name}</DialogTitle>
-                    <DialogDescription>
-                        {enquiry.date} via {enquiry.email}
-                    </DialogDescription>
+                    <DialogTitle>Enquiry Details</DialogTitle>
                 </DialogHeader>
-                <div className="space-y-4">
-                    <p><strong>Type:</strong> <Badge variant="secondary">{enquiry.enquiryType}</Badge></p>
-                    <p><strong>Designation:</strong> {enquiry.designation}</p>
-                    {enquiry.phone && <p><strong>Phone:</strong> {enquiry.phone}</p>}
-                    <div className="p-4 bg-muted rounded-md text-sm">
-                        {enquiry.message}
+                <div className="space-y-4 text-sm">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <p className="text-muted-foreground col-span-1">Name</p>
+                        <p className="font-medium col-span-3">{enquiry.name}</p>
+                    </div>
+                     <div className="grid grid-cols-4 items-center gap-4">
+                        <p className="text-muted-foreground col-span-1">Email</p>
+                        <p className="font-medium col-span-3">{enquiry.email}</p>
+                    </div>
+                     {enquiry.phone && (
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <p className="text-muted-foreground col-span-1">Phone</p>
+                            <p className="font-medium col-span-3">{enquiry.phone}</p>
+                        </div>
+                     )}
+                     <div className="grid grid-cols-4 items-center gap-4">
+                        <p className="text-muted-foreground col-span-1">Date</p>
+                        <p className="font-medium col-span-3">{enquiry.date}</p>
+                    </div>
+                     <div className="grid grid-cols-4 items-center gap-4">
+                        <p className="text-muted-foreground col-span-1">Designation</p>
+                        <p className="font-medium col-span-3">{enquiry.designation}</p>
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <p className="text-muted-foreground col-span-1">Reason</p>
+                        <div className="col-span-3">
+                            <Badge variant="secondary">{enquiry.enquiryType}</Badge>
+                        </div>
+                    </div>
+                    <div className="space-y-2">
+                        <p className="text-muted-foreground">Message</p>
+                        <div className="p-4 bg-muted rounded-md">
+                            {enquiry.message}
+                        </div>
                     </div>
                 </div>
             </DialogContent>

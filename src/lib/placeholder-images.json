@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "profile-picture",
+      "description": "A portrait of the portfolio owner.",
+      "imageUrl": "https://picsum.photos/seed/profile/500/500",
+      "imageHint": "portrait professional"
+    },
+    {
+      "id": "project-1",
+      "description": "Screenshot of Project One.",
+      "imageUrl": "https://picsum.photos/seed/project1/600/400",
+      "imageHint": "web application"
+    },
+    {
+      "id": "project-2",
+      "description": "Screenshot of Project Two.",
+      "imageUrl": "https://picsum.photos/seed/project2/600/400",
+      "imageHint": "mobile app"
+    },
+    {
+      "id": "project-3",
+      "description": "Screenshot of Project Three.",
+      "imageUrl": "https://picsum.photos/seed/project3/600/400",
+      "imageHint": "data visualization"
+    },
+    {
+      "id": "project-4",
+      "description": "Screenshot of Project Four.",
+      "imageUrl": "https://picsum.photos/seed/project4/600/400",
+      "imageHint": "machine learning"
+    },
+    {
+      "id": "research-1",
+      "description": "Visual representation of research project one.",
+      "imageUrl": "https://picsum.photos/seed/research1/300/200",
+      "imageHint": "scientific chart"
+    },
+    {
+      "id": "research-2",
+      "description": "Visual representation of research project two.",
+      "imageUrl": "https://picsum.photos/seed/research2/300/200",
+      "imageHint": "laboratory experiment"
+    }
+  ]
 }

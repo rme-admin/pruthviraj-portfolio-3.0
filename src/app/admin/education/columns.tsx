@@ -41,14 +41,18 @@ export const educationColumns: ColumnDef<Education>[] = [
     header: "Period",
   },
   {
-    accessorKey: "marksValue",
+    id: "marks",
     header: "Marks",
     cell: ({ row }) => {
       const education = row.original
-      if (!education.marksValue) return null;
+      if (!education.marksScored) return null;
+      const marksString = education.marksOutOf 
+        ? `${education.marksScored} / ${education.marksOutOf}`
+        : education.marksScored;
+
       return (
         <div className="flex items-center gap-2">
-            <span>{education.marksValue}</span>
+            <span>{marksString}</span>
             {education.marksType && (
                 <Badge variant="secondary" className="capitalize">{education.marksType}</Badge>
             )}

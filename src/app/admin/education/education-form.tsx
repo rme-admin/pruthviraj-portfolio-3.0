@@ -24,7 +24,8 @@ const educationFormSchema = z.object({
   period: z.string().min(2, 'Period is required.'),
   description: z.string().min(10, 'Description must be at least 10 characters.'),
   marksType: z.enum(['cgpa', 'percentage']).optional(),
-  marksValue: z.string().optional(),
+  marksScored: z.string().optional(),
+  marksOutOf: z.string().optional(),
 });
 
 type EducationFormValues = z.infer<typeof educationFormSchema>;
@@ -42,7 +43,8 @@ export default function EducationForm({ education }: EducationFormProps) {
       period: education?.period || '',
       description: education?.description || '',
       marksType: education?.marksType,
-      marksValue: education?.marksValue || '',
+      marksScored: education?.marksScored || '',
+      marksOutOf: education?.marksOutOf || '',
     },
   });
 
@@ -128,19 +130,34 @@ export default function EducationForm({ education }: EducationFormProps) {
                     </FormItem>
                 )}
             />
-            <FormField
-                control={form.control}
-                name="marksValue"
-                render={({ field }) => (
-                    <FormItem>
-                    <FormLabel>Marks</FormLabel>
-                    <FormControl>
-                        <Input placeholder="E.g., 8.5 or 85%" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                    </FormItem>
-                )}
-            />
+            <div className="grid grid-cols-2 gap-4">
+                 <FormField
+                    control={form.control}
+                    name="marksScored"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>Marks Scored</FormLabel>
+                        <FormControl>
+                            <Input placeholder="E.g., 8.5" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                 <FormField
+                    control={form.control}
+                    name="marksOutOf"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>Out Of</FormLabel>
+                        <FormControl>
+                            <Input placeholder="E.g., 10" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+            </div>
         </div>
         <FormField
           control={form.control}

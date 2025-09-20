@@ -23,7 +23,8 @@
       "period": "2018 - 2020",
       "description": "Focused on Artificial Intelligence and Machine Learning. Thesis on neural network optimization.",
       "marksType": "cgpa",
-      "marksValue": "3.8/4.0"
+      "marksScored": "3.8",
+      "marksOutOf": "4.0"
     },
     {
       "id": "edu-2",
@@ -32,7 +33,8 @@
       "period": "2014 - 2018",
       "description": "Graduated with honors. Active member of the coding club and participated in several hackathons.",
       "marksType": "percentage",
-      "marksValue": "85%"
+      "marksScored": "85",
+      "marksOutOf": "100"
     }
   ],
   "experiences": [

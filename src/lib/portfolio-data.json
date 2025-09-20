@@ -71,9 +71,9 @@
     }
   ],
   "certifications": [
-    { "name": "Certified Kubernetes Application Developer (CKAD)", "issuer": "The Linux Foundation", "url": "#" },
-    { "name": "AWS Certified Solutions Architect – Associate", "issuer": "Amazon Web Services", "url": "#" },
-    { "name": "Google Certified Professional Data Engineer", "issuer": "Google Cloud", "url": "#" }
+    { "id": "cert-1", "name": "Certified Kubernetes Application Developer (CKAD)", "issuer": "The Linux Foundation", "url": "#" },
+    { "id": "cert-2", "name": "AWS Certified Solutions Architect – Associate", "issuer": "Amazon Web Services", "url": "#" },
+    { "id": "cert-3", "name": "Google Certified Professional Data Engineer", "issuer": "Google Cloud", "url": "#" }
   ],
   "honorsAndAwards": [
     { "id": "award-1", "description": "Innovatech Hackathon Winner - 2023" },

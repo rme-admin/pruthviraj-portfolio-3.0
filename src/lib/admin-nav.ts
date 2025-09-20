@@ -16,6 +16,7 @@ import {
     Image,
     LucideIcon,
     User,
+    Award,
 } from 'lucide-react';
 
 export interface NavLink {
@@ -78,10 +79,10 @@ export const adminNavigationLinks: NavLink[] = [
     {
         name: 'Courses & Certs',
         href: '/admin/courses',
-        icon: BookCopy,
+        icon: Award,
         sublinks: [
-            { name: 'List Courses', href: '/admin/courses', icon: List },
-            { name: 'Add Course', href: '/admin/courses/new', icon: Plus },
+            { name: 'List Certifications', href: '/admin/courses', icon: List },
+            { name: 'Add Certification', href: '/admin/courses/new', icon: Plus },
         ]
     },
     { name: 'References', href: '/admin/references', icon: Users },

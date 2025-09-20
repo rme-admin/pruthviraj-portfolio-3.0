@@ -66,6 +66,7 @@ export interface ResearchProject {
 }
 
 export interface Certification {
+    id: string;
     name: string;
     issuer: string;
     url: string;

@@ -97,11 +97,13 @@ export default function RequestLorDialog({ reference }: { reference: Reference }
   const onSubmit = (data: z.infer<typeof lorRequestSchema>) => {
     if (!formRef.current) return;
     const formData = new FormData(formRef.current);
+    // Manually set form data from react-hook-form state
     formData.set('requesterName', data.requesterName);
     formData.set('requesterEmail', data.requesterEmail);
     formData.set('requesterPhone', data.requesterPhone);
     formData.set('requesterDesignation', data.requesterDesignation);
     formData.set('requesterOrganization', data.requesterOrganization);
+    // Add the reference's email to the form data
     formData.set('referenceEmail', reference.email);
     formAction(formData);
   };

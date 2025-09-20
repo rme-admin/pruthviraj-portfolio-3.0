@@ -74,8 +74,11 @@ export async function submitLorRequest(
     };
   }
 
+  // Here you would typically trigger an email to `referenceEmail`
+  // with the details from `requesterName`, `requesterEmail`, etc.
   console.log('LOR request received:', validatedFields.data);
 
+  // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 1000));
 
   return {

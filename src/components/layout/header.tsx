@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { Rocket, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { navigationLinks } from '@/lib/data';
+import { primaryNavigationLinks, secondaryNavigationLinks } from '@/lib/data';
 
 function NavLinks({ setMobileMenuOpen }: { setMobileMenuOpen: (open: boolean) => void }) {
   const closeMenu = () => setMobileMenuOpen(false);
   
   return (
     <>
-      {navigationLinks.map((link) => (
+      {[...primaryNavigationLinks, ...secondaryNavigationLinks].map((link) => (
         <Link
           key={link.name}
           href={link.href!}
@@ -47,13 +47,29 @@ export default function Header() {
           <span className="font-headline text-2xl font-bold">Portfolio Pilot</span>
         </Link>
         
-        <div>
+        <nav className="hidden md:flex gap-4">
+            {primaryNavigationLinks.map((link) => (
+                <Button asChild variant="link" key={link.name}>
+                    <Link href={link.href!} className="text-foreground">
+                      {link.name}
+                    </Link>
+                </Button>
+            ))}
+        </nav>
+
+        <div className="flex items-center">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="md:hidden">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
+            </SheetTrigger>
+             <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Toggle navigation menu</span>
+                </Button>
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex flex-col gap-2 p-4">

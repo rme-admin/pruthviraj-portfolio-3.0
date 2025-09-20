@@ -10,11 +10,14 @@ export interface NavigationLink {
   }[];
 }
 
-export const navigationLinks: NavigationLink[] = [
+export const primaryNavigationLinks: NavigationLink[] = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Education', href: '#education' },
   { name: 'Experience', href: '#experience' },
+];
+
+export const secondaryNavigationLinks: NavigationLink[] = [
   { name: 'Publications', href: '#publications' },
   { name: 'Achievements', href: '#achievements' },
   { name: 'Skills', href: '#skills' },

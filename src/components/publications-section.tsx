@@ -27,7 +27,7 @@ export default function PublicationsSection() {
                         <Card key={index}>
                             <CardHeader>
                                 <CardTitle>{pub.title}</CardTitle>
-                                <CardDescription>
+                                <CardDescription className="space-y-1">
                                     <p><span className="font-semibold">Authors:</span> {pub.authors}</p>
                                     <p><span className="font-semibold">Venue:</span> {pub.venue}</p>
                                     <p>
@@ -38,7 +38,7 @@ export default function PublicationsSection() {
                                     </p>
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent className="space-y-4">
+                            <CardContent className="pt-0 px-6 pb-6">
                                 <Accordion type="single" collapsible className="w-full">
                                     <AccordionItem value="item-1">
                                         <AccordionTrigger>Details</AccordionTrigger>

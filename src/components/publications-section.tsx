@@ -48,10 +48,6 @@ export default function PublicationsSection() {
                                                     <h4 className="font-semibold">Summary:</h4>
                                                     <p className="text-muted-foreground">{pub.summary}</p>
                                                 </div>
-                                                <div>
-                                                    <h4 className="font-semibold">My Role:</h4>
-                                                    <p className="text-muted-foreground">{pub.myRole}</p>
-                                                </div>
                                             </div>
                                         </AccordionContent>
                                     </AccordionItem>

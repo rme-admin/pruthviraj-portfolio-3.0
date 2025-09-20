@@ -104,7 +104,6 @@ export interface Publication {
     venue: string;
     doi: string;
     summary: string;
-    myRole: string;
 }
 
 export const publications: Publication[] = [
@@ -114,7 +113,6 @@ export const publications: Publication[] = [
         venue: "Proceedings of Big Data Conf, 2021",
         doi: "10.1234/bigdata.2021.67890",
         summary: "This paper introduces a scalable framework for distributed data processing that significantly reduces latency and computational cost compared to existing solutions.",
-        myRole: "I co-developed the core framework, designed and executed the performance benchmarks, and contributed to the final manuscript.",
     },
     {
         title: "Optimizing Convolutional Neural Networks for Image Recognition",
@@ -122,7 +120,6 @@ export const publications: Publication[] = [
         venue: "AI Journal, 2020",
         doi: "10.1234/aij.2020.12345",
         summary: "This research proposes a new pruning technique for CNNs that reduces model size by 40% with minimal loss in accuracy.",
-        myRole: "I was the primary researcher, responsible for the conceptualization of the pruning algorithm, its implementation, and the experimental validation.",
     }
 ];
 

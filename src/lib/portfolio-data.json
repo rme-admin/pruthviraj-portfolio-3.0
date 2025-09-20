@@ -17,12 +17,14 @@
   ],
   "education": [
     {
+      "id": "edu-1",
       "institution": "University of Technology",
       "degree": "M.S. in Computer Science",
       "period": "2018 - 2020",
       "description": "Focused on Artificial Intelligence and Machine Learning. Thesis on neural network optimization."
     },
     {
+      "id": "edu-2",
       "institution": "State College",
       "degree": "B.S. in Software Engineering",
       "period": "2014 - 2018",

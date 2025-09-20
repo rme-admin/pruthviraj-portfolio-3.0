@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -7,6 +8,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { submitContactForm, FormState } from '@/app/actions';
 import { useToast } from "@/hooks/use-toast"
+import * as lucide from 'lucide-react';
 
 import { Button } from "@/components/ui/button"
 import {
@@ -68,6 +70,12 @@ const socialIcons: { [key: string]: React.FC<React.SVGProps<SVGSVGElement>> } = 
       <path d="M18.17 18.173a.75.75 0 0 0-.529 1.28L19.46 21.27a.75.75 0 0 0 1.28-.53l-1.29-3.095a.75.75 0 0 0-.751-.528l-.029.006zm-5.74-12.44a.75.75 0 0 0-1.06 1.06l3.35 3.351a.75.75 0 0 0 1.06-1.06l-3.35-3.35zm-2.83 5.66a.75.75 0 0 0-1.06 1.06l1.201 1.202a.75.75 0 0 0 1.06-1.06l-1.2-1.202zM12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm4.24 18.242a5.99 5.99 0 0 1-5.99 1.76 5.99 5.99 0 0 1-4.24-4.24 5.99 5.99 0 0 1 1.76-5.99c1.07-1.07 2.49-1.76 4.01-1.76h.23c1.65 0 3.16.76 4.22 2a6.01 6.01 0 0 1 1.77 5.99c-.58 2.2-2.58 3.9-4.76 4.24z" />
     </svg>
   ),
+};
+
+const contactIconMap: { [key: string]: lucide.LucideIcon } = {
+    Mail: lucide.Mail,
+    Phone: lucide.Phone,
+    MapPin: lucide.MapPin,
 };
 
 const contactSchema = z.object({
@@ -275,12 +283,15 @@ export default function ContactSection() {
                 <CardTitle>Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <info.icon className="h-5 w-5 text-primary" />
-                    <span className="text-muted-foreground">{info.text}</span>
-                  </div>
-                ))}
+                {contactInfo.map((info, index) => {
+                  const Icon = contactIconMap[info.icon as keyof typeof contactIconMap] || lucide.Star;
+                  return (
+                    <div key={index} className="flex items-center gap-3">
+                      <Icon className="h-5 w-5 text-primary" />
+                      <span className="text-muted-foreground">{info.text}</span>
+                    </div>
+                  );
+                })}
               </CardContent>
             </Card>
             <Card>

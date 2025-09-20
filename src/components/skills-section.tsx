@@ -1,5 +1,7 @@
+
 'use client';
 import { useState } from 'react';
+import * as lucide from 'lucide-react';
 import {
     Card,
     CardContent,
@@ -9,6 +11,20 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { skills } from '@/lib/data';
 import { Button } from '@/components/ui/button';
+
+// A mapping from string names to Lucide icon components
+const iconMap: { [key: string]: lucide.LucideIcon } = {
+    Code: lucide.Code,
+    Database: lucide.Database,
+    BrainCircuit: lucide.BrainCircuit,
+    TestTube: lucide.TestTube,
+    FunctionSquare: lucide.FunctionSquare,
+    Dumbbell: lucide.Dumbbell,
+    Lightbulb: lucide.Lightbulb,
+    Tractor: lucide.Tractor,
+    // Add other icons from data.ts here
+};
+
 
 export default function SkillsSection() {
     const [category, setCategory] = useState<'All' | 'Research' | 'Technical' | 'Hobby'>('All');
@@ -34,12 +50,15 @@ export default function SkillsSection() {
                         <CardTitle>{category} Skills</CardTitle>
                     </CardHeader>
                     <CardContent className="flex flex-wrap gap-2">
-                        {filteredSkills.map((skill, index) => (
-                            <Badge key={index} variant="secondary" className="text-sm flex items-center gap-1.5 py-1 px-2">
-                                <skill.icon className="h-4 w-4" />
-                                {skill.name}
-                            </Badge>
-                        ))}
+                        {filteredSkills.map((skill, index) => {
+                            const Icon = iconMap[skill.icon as keyof typeof iconMap] || lucide.Star;
+                            return (
+                                <Badge key={index} variant="secondary" className="text-sm flex items-center gap-1.5 py-1 px-2">
+                                    <Icon className="h-4 w-4" />
+                                    {skill.name}
+                                </Badge>
+                            );
+                        })}
                     </CardContent>
                 </Card>
             </div>

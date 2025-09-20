@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Link from 'next/link';
 
@@ -8,7 +9,7 @@ export default function Footer() {
         <p>&copy; {new Date().getFullYear()} Portfolio Pilot. All rights reserved.</p>
         <p className="mt-1">Designed with passion and code.</p>
         <p className="mt-2">
-          <Link href="/admin/login" className="hover:text-primary transition-colors">
+          <Link href="/auth/login" className="hover:text-primary transition-colors">
             Admin Login
           </Link>
         </p>

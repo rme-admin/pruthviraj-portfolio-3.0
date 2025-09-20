@@ -22,7 +22,7 @@ import Footer from '@/components/layout/footer';
 type ProjectType = 'technical' | 'research';
 
 export default function AllProjectsPage() {
-  const [activeTab, setActiveTab] = useState<ProjectType>('technical');
+  const [activeTab, setActiveTab] = useState<ProjectType>('research');
 
   const technicalProjects = projects;
 
@@ -39,20 +39,45 @@ export default function AllProjectsPage() {
 
         <div className="flex justify-center gap-4 mb-8">
           <Button
-            variant={activeTab === 'technical' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('technical')}
-          >
-            Technical Projects
-          </Button>
-          <Button
             variant={activeTab === 'research' ? 'default' : 'outline'}
             onClick={() => setActiveTab('research')}
           >
             Research Projects
           </Button>
+          <Button
+            variant={activeTab === 'technical' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('technical')}
+          >
+            Technical Projects
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {activeTab === 'research' && researchProjects.map((project, index) => {
+            const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
+            return (
+              <Card key={index} className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
+                {image && (
+                  <div className="aspect-video overflow-hidden">
+                    <Image
+                      src={image.imageUrl}
+                      alt={image.description}
+                      width={600}
+                      height={400}
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                      data-ai-hint={image.imageHint}
+                    />
+                  </div>
+                )}
+                <CardHeader>
+                  <CardTitle>{project.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p>{project.description}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
           {activeTab === 'technical' && technicalProjects.map((project, index) => {
             const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
             return (
@@ -84,32 +109,6 @@ export default function AllProjectsPage() {
                     </Link>
                   </Button>
                 </CardFooter>
-              </Card>
-            );
-          })}
-
-          {activeTab === 'research' && researchProjects.map((project, index) => {
-            const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
-            return (
-              <Card key={index} className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
-                {image && (
-                  <div className="aspect-video overflow-hidden">
-                    <Image
-                      src={image.imageUrl}
-                      alt={image.description}
-                      width={600}
-                      height={400}
-                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                      data-ai-hint={image.imageHint}
-                    />
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <p>{project.description}</p>
-                </CardContent>
               </Card>
             );
           })}

@@ -23,9 +23,11 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import ImageCropper from '../my-info/image-cropper';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ImageIcon } from 'lucide-react';
+import type { Project, ResearchProject } from '@/lib/data';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const projectFormSchema = z.object({
   type: z.enum(['technical', 'research']),
@@ -38,21 +40,36 @@ const projectFormSchema = z.object({
 });
 
 type ProjectFormValues = z.infer<typeof projectFormSchema>;
+type projectUnion = Project | ResearchProject;
 
-export default function ProjectForm() {
+interface ProjectFormProps {
+  project?: projectUnion;
+}
+
+
+export default function ProjectForm({ project }: ProjectFormProps) {
   const [projectImage, setProjectImage] = useState<string | null>(null);
 
   const form = useForm<ProjectFormValues>({
     resolver: zodResolver(projectFormSchema),
     defaultValues: {
-      type: 'technical',
-      title: '',
-      date: '',
-      location: '',
-      description: '',
-      url: '',
+      type: project && 'url' in project ? 'technical' : 'research',
+      title: project?.title || '',
+      date: project?.date || '',
+      location: project?.location || '',
+      description: project?.description || '',
+      url: project && 'url' in project ? project.url : '',
     },
   });
+
+  useEffect(() => {
+    if (project) {
+        const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
+        if (image) {
+            setProjectImage(image.imageUrl);
+        }
+    }
+  }, [project])
 
   const projectType = form.watch('type');
 

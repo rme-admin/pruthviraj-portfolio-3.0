@@ -51,6 +51,7 @@ export interface Experience {
 }
 
 export interface ResearchProject {
+  id: string;
   title: string;
   description: string;
   imageUrlId: string;
@@ -73,6 +74,7 @@ export interface Publication {
 }
 
 export interface Project {
+  id: string;
   title: string;
   description: string;
   imageUrlId: string;

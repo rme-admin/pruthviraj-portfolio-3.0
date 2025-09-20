@@ -45,6 +45,7 @@
   ],
   "researchProjects": [
     {
+        "id": "research-1",
         "title": "Advanced AI for Predictive Analytics",
         "description": "A project exploring the use of deep learning models to predict market trends with high accuracy.",
         "imageUrlId": "research-1",
@@ -52,6 +53,7 @@
         "location": "University of Technology"
     },
     {
+        "id": "research-2",
         "title": "Quantum Computing Simulations",
         "description": "Simulating quantum algorithms on classical computers to test their potential applications in cryptography.",
         "imageUrlId": "research-2",
@@ -87,6 +89,7 @@
   ],
   "projects": [
     {
+      "id": "tech-1",
       "title": "E-commerce Platform",
       "description": "A full-stack e-commerce site with features like product search, cart, and payment integration.",
       "imageUrlId": "project-1",
@@ -95,6 +98,7 @@
       "location": "Personal Project"
     },
     {
+      "id": "tech-2",
       "title": "Task Management App",
       "description": "A mobile-friendly application to help users organize their daily tasks and improve productivity.",
       "imageUrlId": "project-2",
@@ -103,6 +107,7 @@
       "location": "Client Work"
     },
     {
+      "id": "tech-3",
       "title": "Data Dashboard",
       "description": "A web-based dashboard for visualizing complex datasets with interactive charts and graphs.",
       "imageUrlId": "project-3",
@@ -111,6 +116,7 @@
       "location": "Innovatech Solutions"
     },
     {
+      "id": "tech-4",
       "title": "AI Chatbot",
       "description": "A machine learning-powered chatbot for customer service, integrated with a messaging platform.",
       "imageUrlId": "project-4",

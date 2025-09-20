@@ -3,6 +3,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import Image from 'next/image'
+import Link from 'next/link'
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -88,8 +89,9 @@ const createColumns = <T extends Project | ResearchProject>(isTechnical: boolean
               Copy project title
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View project</DropdownMenuItem>
-            <DropdownMenuItem>Edit project</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href={`/admin/projects/edit/${project.id}`}>Edit project</Link>
+            </DropdownMenuItem>
              <DropdownMenuItem className="text-destructive">Delete project</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

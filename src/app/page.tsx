@@ -11,8 +11,12 @@ import ContactSection from '@/components/contact-section';
 import MediaSection from '@/components/media-section';
 import EducationSection from '@/components/education-section';
 import ExperienceSection from '@/components/experience-section';
+import { loadPortfolioData } from '@/lib/data-loader';
 
-export default function Home() {
+export default async function Home() {
+  const portfolioData = await loadPortfolioData();
+  console.log('Fetched portfolio data:', portfolioData);
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Header />

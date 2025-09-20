@@ -1,11 +1,20 @@
-import { Code, Database, BrainCircuit, Star, Briefcase, GraduationCap, Mail, Phone, MapPin, BookOpen } from 'lucide-react';
+import { Code, Database, BrainCircuit, Star, Briefcase, GraduationCap, Mail, Phone, MapPin, BookOpen, Award, User, FileText, Camera, BookCopy } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export const navigationLinks = [
   { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Personal Statement', href: '#personal-statement' },
+  { name: 'Research Projects', href: '#research-projects' },
+  { name: 'Technical Projects', href: '#technical-projects' },
+  { name: 'Education', href: '#education' },
+  { name: 'Publications', href: '#publications' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Achievements', href: '#achievements' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Courses & Certs', href: '#courses-certifications' },
+  { name: 'References', href: '#references' },
+  { name: 'Contact Me', href: '#contact' },
+  { name: 'Media', href: '#media' },
 ];
 
 export const skills: { name: string; icon: LucideIcon }[] = [

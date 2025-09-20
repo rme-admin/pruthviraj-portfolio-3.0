@@ -2,8 +2,6 @@ import Image from 'next/image';
 import {
     Card,
     CardContent,
-    CardHeader,
-    CardTitle,
 } from '@/components/ui/card';
 import {
     Accordion,
@@ -43,7 +41,7 @@ export default function MediaSection() {
                                 )}
                                 <CardContent className="p-4 flex-grow">
                                      <Accordion type="single" collapsible className="w-full">
-                                        <AccordionItem value={`item-${item.id}`} className="border-b-0">
+                                        <AccordionItem value={item.id} className="border-b-0">
                                             <AccordionTrigger className="p-0 hover:no-underline">
                                                 <h3 className="font-semibold text-lg">{item.caption}</h3>
                                             </AccordionTrigger>

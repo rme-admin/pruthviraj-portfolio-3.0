@@ -49,24 +49,11 @@ export const enquiryColumns: ColumnDef<Enquiry>[] = [
     header: "Email",
   },
   {
-    accessorKey: "designation",
-    header: "Designation",
-  },
-  {
     accessorKey: "enquiryType",
     header: "Reason",
     cell: ({ row }) => {
         const type = row.getValue("enquiryType") as string;
         return <Badge variant="outline">{type}</Badge>
-    }
-  },
-  {
-    accessorKey: "message",
-    header: "Message",
-    cell: ({ row }) => {
-      const message = row.getValue("message") as string;
-      const truncatedMessage = message.length > 50 ? `${message.substring(0, 50)}...` : message;
-      return <span className="text-muted-foreground">{truncatedMessage}</span>
     }
   },
   {

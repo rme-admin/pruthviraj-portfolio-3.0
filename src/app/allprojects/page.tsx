@@ -10,19 +10,25 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { projects, researchProjects } from '@/lib/data';
+import { projects, researchProjects, Project, ResearchProject } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowUpRight, Calendar, MapPin } from 'lucide-react';
+import { Calendar, MapPin, Eye } from 'lucide-react';
 import Header from './header';
 import Footer from '@/components/layout/footer';
+import ProjectDetails from './project-details';
 
 type ProjectType = 'technical' | 'research';
+type SelectedProject = (Project | ResearchProject) & { type: ProjectType };
 
 export default function AllProjectsPage() {
   const [activeTab, setActiveTab] = useState<ProjectType>('research');
+  const [selectedProject, setSelectedProject] = useState<SelectedProject | null>(null);
+
+  const handleViewDetails = (project: Project | ResearchProject, type: ProjectType) => {
+    setSelectedProject({ ...project, type });
+  };
 
   const technicalProjects = projects;
 
@@ -72,19 +78,22 @@ export default function AllProjectsPage() {
                 <CardHeader>
                   <CardTitle>{project.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <p>{project.description}</p>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
-                      <div className="flex items-center gap-1.5">
-                          <Calendar className="h-4 w-4" />
-                          <span>{project.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                          <MapPin className="h-4 w-4" />
-                          <span>{project.location}</span>
-                      </div>
-                  </div>
+                <CardContent className="flex-grow space-y-2">
+                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        <span>{project.date}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <MapPin className="h-4 w-4" />
+                        <span>{project.location}</span>
+                    </div>
                 </CardContent>
+                 <CardFooter>
+                    <Button onClick={() => handleViewDetails(project, 'research')} variant="outline" className="w-full">
+                        <Eye className="mr-2 h-4 w-4" />
+                        View Details
+                    </Button>
+                </CardFooter>
               </Card>
             );
           })}
@@ -92,8 +101,7 @@ export default function AllProjectsPage() {
             const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
             return (
               <Card key={index} className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
-                <Link href={project.url} target="_blank" rel="noopener noreferrer" className="block">
-                  {image && (
+                {image && (
                     <div className="aspect-video overflow-hidden">
                       <Image
                         src={image.imageUrl}
@@ -104,30 +112,25 @@ export default function AllProjectsPage() {
                         data-ai-hint={image.imageHint}
                       />
                     </div>
-                  )}
-                </Link>
+                )}
                 <CardHeader>
                   <CardTitle>{project.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <CardDescription>{project.description}</CardDescription>
-                   <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
-                      <div className="flex items-center gap-1.5">
-                          <Calendar className="h-4 w-4" />
-                          <span>{project.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                          <MapPin className="h-4 w-4" />
-                          <span>{project.location}</span>
-                      </div>
-                  </div>
+                <CardContent className="flex-grow space-y-2">
+                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        <span>{project.date}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <MapPin className="h-4 w-4" />
+                        <span>{project.location}</span>
+                    </div>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild variant="link" className="p-0 h-auto">
-                    <Link href={project.url} target="_blank" rel="noopener noreferrer">
-                      View Project <ArrowUpRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </Button>
+                    <Button onClick={() => handleViewDetails(project, 'technical')} variant="outline" className="w-full">
+                        <Eye className="mr-2 h-4 w-4" />
+                        View Details
+                    </Button>
                 </CardFooter>
               </Card>
             );
@@ -135,6 +138,17 @@ export default function AllProjectsPage() {
         </div>
       </main>
       <Footer />
+      {selectedProject && (
+        <ProjectDetails
+          project={selectedProject}
+          open={!!selectedProject}
+          onOpenChange={(isOpen) => {
+            if (!isOpen) {
+              setSelectedProject(null);
+            }
+          }}
+        />
+      )}
     </div>
   );
 }

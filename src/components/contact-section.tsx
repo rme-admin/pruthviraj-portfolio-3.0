@@ -172,6 +172,7 @@ export default function ContactSection() {
                                 <SelectItem value="Requesting for SOP">Requesting for SOP</SelectItem>
                                 <SelectItem value="Requesting for Resume">Requesting for Resume</SelectItem>
                                 <SelectItem value="Requesting for Certificate info">Requesting for Certificate info</SelectItem>
+                                <SelectItem value="Inviting for an interview">Inviting for an interview</SelectItem>
                                 <SelectItem value="Other">Other</SelectItem>
                               </SelectContent>
                             </Select>

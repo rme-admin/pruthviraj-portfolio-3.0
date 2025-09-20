@@ -4,9 +4,13 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { honorsAndAwards } from '@/lib/data';
+import type { Achievement } from '@/lib/types';
 
-export default function AchievementsSection() {
+interface AchievementsSectionProps {
+    achievements: Achievement[];
+}
+
+export default function AchievementsSection({ achievements }: AchievementsSectionProps) {
     return (
         <section id="achievements" className="py-6 md:py-8 bg-card scroll-mt-20">
             <div className="container mx-auto px-4 md:px-6">
@@ -17,7 +21,7 @@ export default function AchievementsSection() {
                     <CardHeader><CardTitle>Honors & Awards</CardTitle></CardHeader>
                     <CardContent>
                         <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                            {honorsAndAwards.map((award) => <li key={award.id}>{award.description}</li>)}
+                            {(achievements || []).map((award) => <li key={award.id}>{award.description}</li>)}
                         </ul>
                     </CardContent>
                 </Card>

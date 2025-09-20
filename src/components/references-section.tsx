@@ -1,10 +1,13 @@
-import { references } from '@/lib/data';
+import type { Reference } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Mail, Phone, User, Briefcase } from 'lucide-react';
+import { Mail, Phone, User } from 'lucide-react';
 import RequestLorDialog from './request-lor-dialog';
 
+interface ReferencesSectionProps {
+    references: Reference[];
+}
 
-export default function ReferencesSection() {
+export default function ReferencesSection({ references }: ReferencesSectionProps) {
     return (
         <section id="references" className="py-6 md:py-8 bg-background scroll-mt-20">
             <div className="container mx-auto px-4 md:px-6">
@@ -16,7 +19,7 @@ export default function ReferencesSection() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    {references.map((reference, index) => (
+                    {(references || []).map((reference, index) => (
                         <Card key={index}>
                             <CardHeader>
                                 <CardTitle>{reference.fullName}</CardTitle>

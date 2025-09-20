@@ -1,7 +1,11 @@
 import { Briefcase } from 'lucide-react';
-import { experiences } from '@/lib/data';
+import type { Experience } from '@/lib/types';
 
-export default function ExperienceSection() {
+interface ExperienceSectionProps {
+    experiences: Experience[];
+}
+
+export default function ExperienceSection({ experiences }: ExperienceSectionProps) {
     return (
         <section id="experience" className="py-6 md:py-8 bg-card scroll-mt-20">
             <div className="container mx-auto px-4 md:px-6">
@@ -10,7 +14,7 @@ export default function ExperienceSection() {
                 </div>
                  <div className="relative">
                     <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-border"></div>
-                    {experiences.map((exp, index) => (
+                    {(experiences || []).map((exp, index) => (
                         <div key={index} className="relative mb-8">
                             <div className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
                                 <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>

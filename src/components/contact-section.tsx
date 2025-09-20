@@ -35,7 +35,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { contactInfo, socialLinks } from '@/lib/data';
 import { Send, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -73,7 +72,12 @@ function SubmitButton({ isSubmitting }: { isSubmitting: boolean }) {
   );
 }
 
-export default function ContactSection() {
+interface ContactSectionProps {
+    contactInfo: any;
+    socialLinks: any[];
+}
+
+export default function ContactSection({ contactInfo, socialLinks }: ContactSectionProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
   
@@ -251,15 +255,18 @@ export default function ContactSection() {
                 <CardTitle>Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {contactInfo.map((info, index) => {
-                  const Icon = contactIconMap[info.icon as keyof typeof contactIconMap] || lucide.Star;
-                  return (
-                    <div key={index} className="flex items-center gap-3">
-                      <Icon className="h-5 w-5 text-primary" />
-                      <span className="text-muted-foreground">{info.text}</span>
-                    </div>
-                  );
-                })}
+                  {contactInfo.email && <div className="flex items-center gap-3">
+                      <lucide.Mail className="h-5 w-5 text-primary" />
+                      <span className="text-muted-foreground">{contactInfo.email}</span>
+                  </div>}
+                   {contactInfo.phone_number && <div className="flex items-center gap-3">
+                      <lucide.Phone className="h-5 w-5 text-primary" />
+                      <span className="text-muted-foreground">{contactInfo.phone_number}</span>
+                  </div>}
+                   {contactInfo.address && <div className="flex items-center gap-3">
+                      <lucide.MapPin className="h-5 w-5 text-primary" />
+                      <span className="text-muted-foreground">{contactInfo.address}</span>
+                  </div>}
               </CardContent>
             </Card>
             <Card>
@@ -267,7 +274,7 @@ export default function ContactSection() {
                     <CardTitle>Social Media</CardTitle>
                 </CardHeader>
                 <CardContent className="flex gap-4">
-                    {socialLinks.map((social) => (
+                    {(socialLinks || []).map((social) => (
                         <Button key={social.name} asChild size="icon" variant="ghost" className="rounded-full h-9 w-9">
                             <Link href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
                                 <Image src={social.icon} alt={social.name} width={24} height={24} className="object-contain" />

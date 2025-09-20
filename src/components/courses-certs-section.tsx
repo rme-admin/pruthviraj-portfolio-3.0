@@ -5,11 +5,15 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { certifications } from '@/lib/data';
+import type { Course } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function CoursesCertsSection() {
+interface CoursesCertsSectionProps {
+    certifications: Course[];
+}
+
+export default function CoursesCertsSection({ certifications }: CoursesCertsSectionProps) {
     return (
         <section id="courses-certifications" className="py-6 md:py-8 bg-card scroll-mt-20">
             <div className="container mx-auto px-4 md:px-6">
@@ -20,7 +24,7 @@ export default function CoursesCertsSection() {
                     <CardHeader><CardTitle>Certifications</CardTitle></CardHeader>
                     <CardContent>
                         <ul className="space-y-4">
-                            {certifications.map((cert, i) => (
+                            {(certifications || []).map((cert, i) => (
                                 <li key={i} className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
                                     <div>
                                         <p className="font-semibold">{cert.name}</p>

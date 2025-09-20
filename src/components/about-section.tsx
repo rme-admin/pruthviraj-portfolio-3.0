@@ -16,11 +16,18 @@ import {
     CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
-import { projects, researchProjects } from '@/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import type { Project } from '@/lib/types';
 import { ArrowUpRight, ChevronsLeftRight, Calendar, MapPin } from 'lucide-react';
 
-export default function AboutSection() {
+interface AboutSectionProps {
+    userDetails: any;
+    technicalProjects: Project[];
+    researchProjects: Project[];
+}
+
+export default function AboutSection({ userDetails, technicalProjects, researchProjects }: AboutSectionProps) {
+    const { about_me } = userDetails || {};
+    
     return (
         <section id="about" className="py-6 md:py-8 bg-card scroll-mt-20">
             <div className="container mx-auto px-4 md:px-6">
@@ -31,7 +38,7 @@ export default function AboutSection() {
                 <div className="space-y-12">
                     <div>
                         <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center">
-                            A passionate Senior Software Engineer transforming complex problems into elegant, user-centric solutions. I have a strong background in both research and technical projects, with a Master's in Physics providing a unique analytical perspective to my software development work.
+                            {about_me}
                         </p>
                     </div>
 
@@ -40,54 +47,50 @@ export default function AboutSection() {
                             <h3 className="text-3xl font-bold text-center mb-8 font-headline">Technical Projects</h3>
                             <Carousel className="w-full max-w-4xl mx-auto" opts={{ align: "start", loop: true }}>
                                 <CarouselContent>
-                                    {projects.map((project, index) => {
-                                        const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
-                                        return (
-                                            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                                                <div className="p-1 h-full">
-                                                    <Card className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1 h-full">
-                                                        <Link href={project.url} target="_blank" rel="noopener noreferrer" className="block">
-                                                            {image && (
-                                                                <div className="aspect-video overflow-hidden">
-                                                                <Image
-                                                                    src={image.imageUrl}
-                                                                    alt={image.description}
-                                                                    width={600}
-                                                                    height={400}
-                                                                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                                                                    data-ai-hint={image.imageHint}
-                                                                />
-                                                                </div>
-                                                            )}
-                                                        </Link>
-                                                        <CardHeader>
-                                                            <CardTitle>{project.title}</CardTitle>
-                                                        </CardHeader>
-                                                        <CardContent className="flex-grow">
-                                                            <CardDescription>{project.description}</CardDescription>
-                                                             <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
-                                                                <div className="flex items-center gap-1.5">
-                                                                    <Calendar className="h-4 w-4" />
-                                                                    <span>{project.date}</span>
-                                                                </div>
-                                                                <div className="flex items-center gap-1.5">
-                                                                    <MapPin className="h-4 w-4" />
-                                                                    <span>{project.location}</span>
-                                                                </div>
+                                    {(technicalProjects || []).map((project, index) => (
+                                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                                            <div className="p-1 h-full">
+                                                <Card className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1 h-full">
+                                                    <Link href={project.url} target="_blank" rel="noopener noreferrer" className="block">
+                                                        {project.imageUrlId && (
+                                                            <div className="aspect-video overflow-hidden">
+                                                            <Image
+                                                                src={project.imageUrlId}
+                                                                alt={project.title}
+                                                                width={600}
+                                                                height={400}
+                                                                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                                                            />
                                                             </div>
-                                                        </CardContent>
-                                                        <CardFooter>
-                                                            <Button asChild variant="link" className="p-0 h-auto">
-                                                                <Link href={project.url} target="_blank" rel="noopener noreferrer">
-                                                                    View Project <ArrowUpRight className="ml-1 h-4 w-4" />
-                                                                </Link>
-                                                            </Button>
-                                                        </CardFooter>
-                                                    </Card>
-                                                </div>
-                                            </CarouselItem>
-                                        );
-                                    })}
+                                                        )}
+                                                    </Link>
+                                                    <CardHeader>
+                                                        <CardTitle>{project.title}</CardTitle>
+                                                    </CardHeader>
+                                                    <CardContent className="flex-grow">
+                                                        <CardDescription>{project.description}</CardDescription>
+                                                         <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
+                                                            <div className="flex items-center gap-1.5">
+                                                                <Calendar className="h-4 w-4" />
+                                                                <span>{project.date}</span>
+                                                            </div>
+                                                            <div className="flex items-center gap-1.5">
+                                                                <MapPin className="h-4 w-4" />
+                                                                <span>{project.location}</span>
+                                                            </div>
+                                                        </div>
+                                                    </CardContent>
+                                                    <CardFooter>
+                                                        <Button asChild variant="link" className="p-0 h-auto">
+                                                            <Link href={project.url} target="_blank" rel="noopener noreferrer">
+                                                                View Project <ArrowUpRight className="ml-1 h-4 w-4" />
+                                                            </Link>
+                                                        </Button>
+                                                    </CardFooter>
+                                                </Card>
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
                                 </CarouselContent>
                                 <CarouselPrevious />
                                 <CarouselNext />
@@ -102,45 +105,41 @@ export default function AboutSection() {
                             <h3 className="text-3xl font-bold text-center mb-8 font-headline">Research Projects</h3>
                              <Carousel className="w-full max-w-4xl mx-auto" opts={{ align: "start", loop: true }}>
                                 <CarouselContent>
-                                    {researchProjects.map((project, index) => {
-                                        const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
-                                        return (
-                                            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                                                <div className="p-1 h-full">
-                                                    <Card key={index} className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1 h-full">
-                                                        {image && (
-                                                            <div className="aspect-video overflow-hidden">
-                                                            <Image
-                                                                src={image.imageUrl}
-                                                                alt={image.description}
-                                                                width={600}
-                                                                height={400}
-                                                                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                                                                data-ai-hint={image.imageHint}
-                                                            />
+                                    {(researchProjects || []).map((project, index) => (
+                                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                                            <div className="p-1 h-full">
+                                                <Card key={index} className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1 h-full">
+                                                    {project.imageUrlId && (
+                                                        <div className="aspect-video overflow-hidden">
+                                                        <Image
+                                                            src={project.imageUrlId}
+                                                            alt={project.title}
+                                                            width={600}
+                                                            height={400}
+                                                            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                                                        />
+                                                        </div>
+                                                    )}
+                                                    <CardHeader>
+                                                        <CardTitle>{project.title}</CardTitle>
+                                                    </CardHeader>
+                                                    <CardContent className="flex-grow">
+                                                        <p>{project.description}</p>
+                                                        <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
+                                                            <div className="flex items-center gap-1.5">
+                                                                <Calendar className="h-4 w-4" />
+                                                                <span>{project.date}</span>
                                                             </div>
-                                                        )}
-                                                        <CardHeader>
-                                                            <CardTitle>{project.title}</CardTitle>
-                                                        </CardHeader>
-                                                        <CardContent className="flex-grow">
-                                                            <p>{project.description}</p>
-                                                            <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
-                                                                <div className="flex items-center gap-1.5">
-                                                                    <Calendar className="h-4 w-4" />
-                                                                    <span>{project.date}</span>
-                                                                </div>
-                                                                <div className="flex items-center gap-1.5">
-                                                                    <MapPin className="h-4 w-4" />
-                                                                    <span>{project.location}</span>
-                                                                </div>
+                                                            <div className="flex items-center gap-1.5">
+                                                                <MapPin className="h-4 w-4" />
+                                                                <span>{project.location}</span>
                                                             </div>
-                                                        </CardContent>
-                                                    </Card>
-                                                </div>
-                                            </CarouselItem>
-                                        );
-                                    })}
+                                                        </div>
+                                                    </CardContent>
+                                                </Card>
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
                                 </CarouselContent>
                                 <CarouselPrevious />
                                 <CarouselNext />

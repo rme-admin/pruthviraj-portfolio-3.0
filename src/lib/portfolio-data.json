@@ -33,18 +33,19 @@
       "period": "2014 - 2018",
       "description": "Graduated with honors. Active member of the coding club and participated in several hackathons.",
       "marksType": "percentage",
-      "marksScored": "85",
-      "marksOutOf": "100"
+      "marksScored": "85"
     }
   ],
   "experiences": [
     {
+      "id": "exp-1",
       "company": "Innovatech Solutions",
       "role": "Senior Software Engineer",
       "period": "2022 - Present",
       "description": "Leading a team to develop a new cloud-based SaaS platform. Responsible for architecture, code reviews, and mentoring junior developers."
     },
     {
+      "id": "exp-2",
       "company": "Data Systems Inc.",
       "role": "Software Engineer",
       "period": "2020 - 2022",

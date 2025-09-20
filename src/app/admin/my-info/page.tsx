@@ -23,8 +23,8 @@ export default function MyInfoPage() {
         <CardContent className="space-y-8 pt-6">
           <div className="space-y-4">
             <h3 className="text-lg font-medium">Personal Details</h3>
-            <div className="grid grid-cols-1 gap-4 rounded-lg border p-4 sm:grid-cols-3">
-                <div className="space-y-2">
+            <div className="grid grid-cols-1 gap-4 rounded-lg border p-4 sm:grid-cols-5">
+                <div className="space-y-2 sm:col-span-1">
                   <Label htmlFor="prefix">Prefix</Label>
                   <Select defaultValue="Mr.">
                     <SelectTrigger id="prefix">
@@ -42,11 +42,11 @@ export default function MyInfoPage() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 sm:col-span-2">
                   <Label htmlFor="firstName">First Name</Label>
                   <Input id="firstName" placeholder="John" defaultValue="John" />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 sm:col-span-2">
                   <Label htmlFor="lastName">Last Name</Label>
                   <Input id="lastName" placeholder="Doe" defaultValue="Doe" />
                 </div>

@@ -132,6 +132,14 @@ export default function AboutSection() {
                         </div>
                     </div>
 
+                    <div className="text-center">
+                        <Button asChild>
+                            <Link href="/allprojects">
+                                View All Projects <ArrowUpRight className="ml-2 h-4 w-4" />
+                            </Link>
+                        </Button>
+                    </div>
+
                 </div>
             </div>
         </section>

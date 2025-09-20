@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import type { Education } from '@/lib/data'
+import { Badge } from "@/components/ui/badge"
 
 export const educationColumns: ColumnDef<Education>[] = [
   {
@@ -38,6 +39,22 @@ export const educationColumns: ColumnDef<Education>[] = [
   {
     accessorKey: "period",
     header: "Period",
+  },
+  {
+    accessorKey: "marksValue",
+    header: "Marks",
+    cell: ({ row }) => {
+      const education = row.original
+      if (!education.marksValue) return null;
+      return (
+        <div className="flex items-center gap-2">
+            <span>{education.marksValue}</span>
+            {education.marksType && (
+                <Badge variant="secondary" className="capitalize">{education.marksType}</Badge>
+            )}
+        </div>
+      )
+    }
   },
   {
     id: "actions",

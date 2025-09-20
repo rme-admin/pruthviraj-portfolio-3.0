@@ -42,6 +42,8 @@ export interface Education {
     degree: string;
     period: string;
     description: string;
+    marksType?: 'cgpa' | 'percentage';
+    marksValue?: string;
 }
 
 export interface Experience {

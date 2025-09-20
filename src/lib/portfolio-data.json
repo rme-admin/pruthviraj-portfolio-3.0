@@ -21,14 +21,18 @@
       "institution": "University of Technology",
       "degree": "M.S. in Computer Science",
       "period": "2018 - 2020",
-      "description": "Focused on Artificial Intelligence and Machine Learning. Thesis on neural network optimization."
+      "description": "Focused on Artificial Intelligence and Machine Learning. Thesis on neural network optimization.",
+      "marksType": "cgpa",
+      "marksValue": "3.8/4.0"
     },
     {
       "id": "edu-2",
       "institution": "State College",
       "degree": "B.S. in Software Engineering",
       "period": "2014 - 2018",
-      "description": "Graduated with honors. Active member of the coding club and participated in several hackathons."
+      "description": "Graduated with honors. Active member of the coding club and participated in several hackathons.",
+      "marksType": "percentage",
+      "marksValue": "85%"
     }
   ],
   "experiences": [

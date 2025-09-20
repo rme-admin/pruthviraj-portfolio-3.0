@@ -9,7 +9,6 @@ import {
 
 export default function DashboardPage() {
   return (
-    <div className="p-4 md:p-6">
       <Card>
         <CardHeader>
           <CardTitle>Welcome to your Admin Dashboard!</CardTitle>
@@ -24,6 +23,5 @@ export default function DashboardPage() {
           </p>
         </CardContent>
       </Card>
-    </div>
   );
 }

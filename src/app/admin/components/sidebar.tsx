@@ -14,7 +14,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
-  SidebarTrigger,
+  SidebarClose,
 } from '@/components/ui/sidebar';
 import { Rocket, LogOut } from 'lucide-react';
 import { adminNavigationLinks } from '@/lib/admin-nav';
@@ -28,8 +28,8 @@ export default function AdminSidebar() {
         <div className="flex items-center gap-2">
             <Rocket className="h-7 w-7 text-primary" />
             <span className="font-headline text-2xl font-bold">Admin Panel</span>
-            <div className="ml-auto">
-                <SidebarTrigger />
+            <div className="ml-auto md:hidden">
+                <SidebarClose />
             </div>
         </div>
       </SidebarHeader>

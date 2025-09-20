@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Project } from '@/lib/types';
 import { ArrowUpRight, Calendar, MapPin } from 'lucide-react';
 
-type SelectedProject = Project & { type: 'technical' | 'research' };
+type SelectedProject = Project & { type: 'Technical' | 'Research' };
 
 interface ProjectDetailsProps {
   project: SelectedProject | null;
@@ -57,7 +57,7 @@ export default function ProjectDetails({ project, open, onOpenChange }: ProjectD
 
           <SheetDescription>{project.description}</SheetDescription>
 
-          {project.type === 'technical' && project.url && (
+          {project.type === 'Technical' && project.url && (
             <Button asChild className="w-full">
               <Link href={project.url} target="_blank" rel="noopener noreferrer">
                 View Live Project

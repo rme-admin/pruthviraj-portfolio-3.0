@@ -78,7 +78,7 @@ export interface MediaItem {
 }
 
 export interface SocialLink {
-    id_string: string;
+    id: string;
     name: string;
     url: string;
     icon: string;

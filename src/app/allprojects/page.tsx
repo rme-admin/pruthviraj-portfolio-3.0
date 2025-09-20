@@ -18,11 +18,11 @@ import Header from './header';
 import Footer from '@/components/layout/footer';
 import ProjectDetails from './project-details';
 
-type ProjectType = 'technical' | 'research';
+type ProjectType = 'Technical' | 'Research';
 type SelectedProject = Project & { type: ProjectType };
 
 export default function AllProjectsPage() {
-  const [activeTab, setActiveTab] = useState<ProjectType>('research');
+  const [activeTab, setActiveTab] = useState<ProjectType>('Research');
   const [selectedProject, setSelectedProject] = useState<SelectedProject | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
   const [copyright, setCopyright] = useState('');
@@ -44,7 +44,7 @@ export default function AllProjectsPage() {
   
   const technicalProjects = projects.filter(p => p.category === 'Technical');
   const researchProjects = projects.filter(p => p.category === 'Research');
-  const currentProjects = activeTab === 'technical' ? technicalProjects : researchProjects;
+  const currentProjects = activeTab === 'Technical' ? technicalProjects : researchProjects;
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -59,14 +59,14 @@ export default function AllProjectsPage() {
 
         <div className="flex justify-center gap-4 mb-8">
           <Button
-            variant={activeTab === 'research' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('research')}
+            variant={activeTab === 'Research' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('Research')}
           >
             Research Projects
           </Button>
           <Button
-            variant={activeTab === 'technical' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('technical')}
+            variant={activeTab === 'Technical' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('Technical')}
           >
             Technical Projects
           </Button>

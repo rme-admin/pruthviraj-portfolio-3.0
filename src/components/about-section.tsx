@@ -85,7 +85,7 @@ export default function AboutSection() {
                             </Carousel>
                             <div className="text-center mt-4 text-sm text-muted-foreground flex items-center justify-center gap-2">
                                 <ChevronsLeftRight className="h-4 w-4" />
-                                <span>Slide to view more projects</span>
+                                <span>swipe right to left</span>
                             </div>
                         </div>
 
@@ -128,7 +128,7 @@ export default function AboutSection() {
                             </Carousel>
                             <div className="text-center mt-4 text-sm text-muted-foreground flex items-center justify-center gap-2">
                                 <ChevronsLeftRight className="h-4 w-4" />
-                                <span>Slide to view more projects</span>
+                                <span>swipe right to left</span>
                             </div>
                         </div>
                     </div>

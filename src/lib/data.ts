@@ -6,19 +6,29 @@ import type { PortfolioData } from './types';
  * @returns {Promise<PortfolioData | null>} A promise resolving to the transformed data, or null on error.
  */
 export async function getPortfolioData(): Promise<PortfolioData | null> {
+  // Directly use the environment variable for the server-side fetch.
+  const API_BASE_URL = process.env.API_BASE_URL;
+  if (!API_BASE_URL) {
+    console.error("Error: API_BASE_URL environment variable is not set.");
+    return null;
+  }
+  
+  const apiUrl = `${API_BASE_URL}/api/portfolio-data`;
+
   try {
-    const apiUrl = `${process.env.API_BASE_URL}/api/portfolio-data`;
+    console.log(`Fetching data from: ${apiUrl}`);
     const res = await fetch(apiUrl, { cache: 'no-store' });
 
     if (!res.ok) {
-      console.error(`API request failed: ${res.statusText}`);
+      console.error(`API request failed: ${res.status} ${res.statusText}`);
+      const errorBody = await res.text();
+      console.error(`Error body: ${errorBody}`);
       return null;
     }
 
     const rawData: any = await res.json();
     if (!rawData) return null;
 
-    const API_BASE_URL = process.env.API_BASE_URL;
     const createFullUrl = (path: string | null) => (path ? `${API_BASE_URL}/${path}` : '');
 
     const transformedData: PortfolioData = {
@@ -31,7 +41,7 @@ export async function getPortfolioData(): Promise<PortfolioData | null> {
       skills: Object.entries(rawData.skills || {}).flatMap(([category, skillNames]: [string, any[]], catIndex) => 
         (skillNames || []).map((skill: any, skillIndex) => ({
           id: `skill-${category}-${catIndex}-${skillIndex}`,
-          name: skill.name || skill,
+          name: typeof skill === 'string' ? skill : skill.name,
           icon: skill.icon || 'Code', 
           category: category as 'Technical' | 'Research' | 'Hobby',
         }))
@@ -45,7 +55,7 @@ export async function getPortfolioData(): Promise<PortfolioData | null> {
         description: edu.description,
         marksScored: edu.mark_obtained,
         marksOutOf: edu.max_mark,
-        marksType: 'cgpa' // Assuming cgpa, can be made dynamic if API provides it
+        marksType: edu.entry_type === 'Postgraduate' ? 'cgpa' : 'percentage'
       })),
       
       experiences: (rawData.experience || []).map((exp: any, index: number) => ({
@@ -117,7 +127,11 @@ export async function getPortfolioData(): Promise<PortfolioData | null> {
     return transformedData;
 
   } catch (error) {
-    console.error("Error in getPortfolioData:", error);
+    if (error instanceof TypeError && error.message === 'fetch failed') {
+      console.error("Network Error: Could not connect to the API endpoint. Please ensure the backend server is running and accessible at the specified API_BASE_URL.", error);
+    } else {
+      console.error("An unexpected error occurred in getPortfolioData:", error);
+    }
     return null;
   }
 }

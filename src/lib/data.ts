@@ -1,5 +1,5 @@
 
-import { Code, Database, BrainCircuit, Star, Briefcase, GraduationCap, Mail, Phone, MapPin, BookOpen, Award, User, FileText, Camera, BookCopy, TestTube, FunctionSquare, Laptop, Wind, Cloud, Lightbulb, Tractor, Dumbbell, Gamepad, Paintbrush, Plane } from 'lucide-react';
+import { Code, Database, BrainCircuit, Star, Briefcase, GraduationCap, Mail, Phone, MapPin, BookOpen, Award, User, FileText, Camera, BookCopy, TestTube, FunctionSquare, Laptop, Wind, Cloud, Lightbulb, Tractor, Dumbbell, Gamepad, Paintbrush, Plane, Linkedin, Twitter, Instagram, PenSquare, FlaskConical } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface NavigationLink {
@@ -185,6 +185,14 @@ export const contactInfo = [
     { icon: Mail, text: 'hello@portfoliopilot.com' },
     { icon: Phone, text: '+1 (234) 567-890' },
     { icon: MapPin, text: 'San Francisco, CA' },
+];
+
+export const socialLinks = [
+    { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/' },
+    { name: 'Medium', icon: PenSquare, url: 'https://medium.com/' },
+    { name: 'X', icon: Twitter, url: 'https://x.com/' },
+    { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/' },
+    { name: 'ResearchGate', icon: FlaskConical, url: 'https://www.researchgate.net/' },
 ];
 
 export interface Reference {

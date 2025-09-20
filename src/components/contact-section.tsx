@@ -33,8 +33,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { contactInfo } from '@/lib/data';
+import { contactInfo, socialLinks } from '@/lib/data';
 import { Send, Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -248,6 +249,20 @@ export default function ContactSection() {
                   </div>
                 ))}
               </CardContent>
+            </Card>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Social Media</CardTitle>
+                </CardHeader>
+                <CardContent className="flex gap-4">
+                    {socialLinks.map((social) => (
+                         <Button key={social.name} asChild variant="outline" size="icon">
+                             <Link href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+                                 <social.icon className="h-5 w-5" />
+                             </Link>
+                         </Button>
+                    ))}
+                </CardContent>
             </Card>
           </div>
         </div>

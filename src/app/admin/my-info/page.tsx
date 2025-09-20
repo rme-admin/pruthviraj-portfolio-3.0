@@ -1,4 +1,7 @@
 
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
 import {
   Card,
   CardContent,
@@ -8,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Save } from 'lucide-react';
+import { Save, User as UserIcon } from 'lucide-react';
 import {
   Select,
   SelectContent,
@@ -16,8 +19,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import ImageCropper from './image-cropper';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 
 export default function MyInfoPage() {
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+
   return (
       <Card>
         <CardContent className="space-y-8 pt-6">
@@ -56,9 +64,17 @@ export default function MyInfoPage() {
             <h3 className="text-lg font-medium">Profile Assets</h3>
              <div className="grid grid-cols-1 gap-4 rounded-lg border p-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                    <Label htmlFor="profileImage">Profile Image</Label>
-                    <Input id="profileImage" type="file" />
-                    <p className="text-sm text-muted-foreground">Upload a new profile picture. (e.g., .png, .jpg)</p>
+                  <Label>Profile Image</Label>
+                  <div className="flex items-center gap-4">
+                    <Avatar className="h-20 w-20">
+                      <AvatarImage src={profileImage || undefined} alt="Profile Picture" />
+                      <AvatarFallback>
+                        <UserIcon className="h-10 w-10 text-muted-foreground" />
+                      </AvatarFallback>
+                    </Avatar>
+                    <ImageCropper onCropComplete={setProfileImage} />
+                  </div>
+                   <p className="text-sm text-muted-foreground">Upload and crop your profile picture.</p>
                 </div>
                 <div />
                 <div className="space-y-2">

@@ -183,3 +183,31 @@ export const references: Reference[] = [
     phone: "+1-234-567-8901"
   }
 ];
+
+export interface MediaItem {
+  id: string;
+  imageUrlId: string;
+  caption: string;
+  description: string;
+}
+
+export const media: MediaItem[] = [
+  {
+    id: 'media-1',
+    imageUrlId: 'media-1',
+    caption: 'Conference Talk',
+    description: 'Presenting my research on distributed systems at the 2023 Big Data Conference.',
+  },
+  {
+    id: 'media-2',
+    imageUrlId: 'media-2',
+    caption: 'Team Hackathon',
+    description: 'Our team celebrating our win at the Innovatech annual hackathon.',
+  },
+  {
+    id: 'media-3',
+    imageUrlId: 'media-3',
+    caption: 'Volunteering Day',
+    description: 'Volunteering with my colleagues to clean up a local park.',
+  },
+];

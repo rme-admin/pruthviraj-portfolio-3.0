@@ -41,6 +41,24 @@
       "description": "Visual representation of research project two.",
       "imageUrl": "https://picsum.photos/seed/research2/300/200",
       "imageHint": "laboratory experiment"
+    },
+    {
+      "id": "media-1",
+      "description": "A person giving a talk at a conference.",
+      "imageUrl": "https://picsum.photos/seed/media1/600/400",
+      "imageHint": "conference presentation"
+    },
+    {
+      "id": "media-2",
+      "description": "A group of people at a hackathon.",
+      "imageUrl": "https://picsum.photos/seed/media2/600/400",
+      "imageHint": "team collaboration"
+    },
+    {
+      "id": "media-3",
+      "description": "A group of people volunteering.",
+      "imageUrl": "https://picsum.photos/seed/media3/600/400",
+      "imageHint": "community service"
     }
   ]
 }

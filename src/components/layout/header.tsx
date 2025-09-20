@@ -2,9 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Rocket, Menu } from 'lucide-react';
+import { Rocket, Menu, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { navigationLinks } from '@/lib/data';
 
 export default function Header() {
@@ -20,6 +26,8 @@ export default function Header() {
   }, []);
 
   const navLinkClasses = "transition-colors hover:text-primary";
+  const mainNavLinks = navigationLinks.slice(0, 4);
+  const moreNavLinks = navigationLinks.slice(4);
 
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-card/80 backdrop-blur-sm shadow-md' : 'bg-transparent'}`}>
@@ -29,11 +37,25 @@ export default function Header() {
           <span className="font-headline text-2xl font-bold">Portfolio Pilot</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
-          {navigationLinks.map((link) => (
+          {mainNavLinks.map((link) => (
             <Link key={link.name} href={link.href} className={navLinkClasses}>
               {link.name}
             </Link>
           ))}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className={navLinkClasses}>
+                More <ChevronDown className="ml-1 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {moreNavLinks.map((link) => (
+                <DropdownMenuItem key={link.name} asChild>
+                  <Link href={link.href}>{link.name}</Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
         <div className="md:hidden">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>

@@ -1,11 +1,25 @@
 import { Code, Database, BrainCircuit, Star, Briefcase, GraduationCap, Mail, Phone, MapPin, BookOpen, Award, User, FileText, Camera, BookCopy } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-export const navigationLinks = [
+export interface NavigationLink {
+  name: string;
+  href?: string;
+  sublinks?: {
+    name: string;
+    href: string;
+  }[];
+}
+
+export const navigationLinks: NavigationLink[] = [
   { name: 'Home', href: '#home' },
   { name: 'Personal Statement', href: '#personal-statement' },
-  { name: 'Research Projects', href: '#research-projects' },
-  { name: 'Technical Projects', href: '#technical-projects' },
+  { 
+    name: 'Projects', 
+    sublinks: [
+      { name: 'Research Projects', href: '#research-projects' },
+      { name: 'Technical Projects', href: '#technical-projects' },
+    ]
+  },
   { name: 'Education', href: '#education' },
   { name: 'Publications', href: '#publications' },
   { name: 'Experience', href: '#experience' },

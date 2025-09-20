@@ -39,6 +39,8 @@ import { Send, Loader2 } from 'lucide-react';
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
+  phone: z.string().optional(),
+  designation: z.string().min(2, "Designation must be at least 2 characters."),
   enquiryType: z.string({ required_error: "Please select a reason for your enquiry."}).min(1, "Please select a reason for your enquiry."),
   message: z.string().min(10, "Message must be at least 10 characters."),
 });
@@ -73,6 +75,8 @@ export default function ContactSection() {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
+      designation: "",
       enquiryType: "",
       message: "",
     },
@@ -100,6 +104,8 @@ export default function ContactSection() {
     // Manually set form data from react-hook-form state
     formData.set('name', data.name);
     formData.set('email', data.email);
+    if(data.phone) formData.set('phone', data.phone);
+    formData.set('designation', data.designation);
     formData.set('enquiryType', data.enquiryType);
     formData.set('message', data.message);
     formAction(formData);
@@ -150,6 +156,32 @@ export default function ContactSection() {
                             <FormLabel>Email</FormLabel>
                             <FormControl>
                               <Input placeholder="your.email@example.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                       <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone Number (Optional)</FormLabel>
+                            <FormControl>
+                              <Input placeholder="+1-555-555-5555" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="designation"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Designation</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your Designation" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

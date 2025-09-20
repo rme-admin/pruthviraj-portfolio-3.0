@@ -5,6 +5,8 @@ import { z } from 'zod';
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
+  phone: z.string().optional(),
+  designation: z.string().min(2, "Designation must be at least 2 characters."),
   enquiryType: z.string().min(1, "Please select a reason for your enquiry."),
   message: z.string().min(10, "Message must be at least 10 characters."),
 });
@@ -21,6 +23,8 @@ export async function submitContactForm(
   const validatedFields = contactSchema.safeParse({
     name: formData.get('name'),
     email: formData.get('email'),
+    phone: formData.get('phone'),
+    designation: formData.get('designation'),
     enquiryType: formData.get('enquiryType'),
     message: formData.get('message'),
   });

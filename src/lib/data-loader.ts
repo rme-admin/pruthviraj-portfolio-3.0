@@ -6,7 +6,7 @@ export async function loadPortfolioData() {
   }
 
   try {
-    const response = await fetch(`${baseUrl}/api/portfolio-data`);
+    const response = await fetch(`${baseUrl}/portfolio-data`);
     if (!response.ok) {
       console.error(`API request failed with status: ${response.status}`);
       return null;

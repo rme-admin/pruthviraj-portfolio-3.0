@@ -38,7 +38,7 @@ import {
 import { contactInfo, socialLinks } from '@/lib/data';
 import { Send, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import { socialIcons } from '@/lib/social-icons.tsx';
+import Image from 'next/image';
 
 const contactIconMap: { [key: string]: lucide.LucideIcon } = {
     Mail: lucide.Mail,
@@ -267,17 +267,13 @@ export default function ContactSection() {
                     <CardTitle>Social Media</CardTitle>
                 </CardHeader>
                 <CardContent className="flex gap-4">
-                    {socialLinks.map((social) => {
-                      const Icon = socialIcons[social.icon];
-                      if (!Icon) return null;
-                      return (
-                         <Button key={social.name} asChild size="icon" variant="ghost" className="rounded-full">
-                             <Link href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
-                                 <Icon className="h-6 w-6 fill-current" />
-                             </Link>
-                         </Button>
-                      );
-                    })}
+                    {socialLinks.map((social) => (
+                        <Button key={social.name} asChild size="icon" variant="ghost" className="rounded-full h-9 w-9">
+                            <Link href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+                                <Image src={social.icon} alt={social.name} width={24} height={24} className="object-contain" />
+                            </Link>
+                        </Button>
+                    ))}
                 </CardContent>
             </Card>
           </div>
@@ -286,5 +282,3 @@ export default function ContactSection() {
     </section>
   );
 }
-
-    

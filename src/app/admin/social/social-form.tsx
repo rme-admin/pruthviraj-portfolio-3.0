@@ -1,7 +1,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -15,20 +15,14 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import type { SocialLink } from '@/lib/data';
-import { socialIcons } from '@/lib/social-icons.tsx';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Link2 } from 'lucide-react';
 
 const socialFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters.'),
   url: z.string().url('Please enter a valid URL.'),
-  icon: z.string().min(1, 'Please select an icon.'),
+  icon: z.any().optional(),
 });
 
 type SocialFormValues = z.infer<typeof socialFormSchema>;
@@ -38,6 +32,8 @@ interface SocialFormProps {
 }
 
 export default function SocialForm({ socialLink }: SocialFormProps) {
+  const [iconPreview, setIconPreview] = useState<string | null>(null);
+
   const form = useForm<SocialFormValues>({
     resolver: zodResolver(socialFormSchema),
     defaultValues: {
@@ -46,6 +42,24 @@ export default function SocialForm({ socialLink }: SocialFormProps) {
       icon: socialLink?.icon || '',
     },
   });
+
+  useEffect(() => {
+    if (socialLink?.icon) {
+      setIconPreview(socialLink.icon);
+    }
+  }, [socialLink]);
+
+  function handleIconChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setIconPreview(reader.result as string);
+        form.setValue('icon', reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
   function onSubmit(data: SocialFormValues) {
     console.log(data);
@@ -84,26 +98,25 @@ export default function SocialForm({ socialLink }: SocialFormProps) {
         <FormField
           control={form.control}
           name="icon"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel>Icon</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+               <div className="flex items-center gap-4">
+                <Avatar className="h-12 w-12 rounded-full">
+                  <AvatarImage src={iconPreview || undefined} alt="Icon preview" />
+                  <AvatarFallback className="rounded-full">
+                    <Link2 className="h-6 w-6 text-muted-foreground" />
+                  </AvatarFallback>
+                </Avatar>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select an icon" />
-                  </SelectTrigger>
+                    <Input
+                        type="file"
+                        accept="image/png, image/svg+xml"
+                        onChange={handleIconChange}
+                        className="max-w-xs"
+                    />
                 </FormControl>
-                <SelectContent>
-                  {Object.keys(socialIcons).map((iconName) => (
-                    <SelectItem key={iconName} value={iconName}>
-                      <div className="flex items-center gap-2">
-                        {React.createElement(socialIcons[iconName], { className: "h-5 w-5" })}
-                        <span>{iconName}</span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              </div>
               <FormMessage />
             </FormItem>
           )}
@@ -113,5 +126,3 @@ export default function SocialForm({ socialLink }: SocialFormProps) {
     </Form>
   );
 }
-
-    

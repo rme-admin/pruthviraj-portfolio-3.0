@@ -15,17 +15,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import type { SocialLink } from '@/lib/data'
-import { socialIcons } from "@/lib/social-icons.tsx"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import React from "react"
+import { Link2 } from "lucide-react"
 
 export const socialLinkColumns: ColumnDef<SocialLink>[] = [
   {
     accessorKey: "icon",
     header: "Icon",
     cell: ({ row }) => {
-      const iconName = row.getValue("icon") as string;
-      const Icon = socialIcons[iconName];
-      return Icon ? <Icon className="h-6 w-6" /> : null;
+      const iconUrl = row.getValue("icon") as string;
+      return (
+        <Avatar className="h-8 w-8">
+          <AvatarImage src={iconUrl} alt={row.original.name} />
+          <AvatarFallback>
+            <Link2 className="h-4 w-4" />
+          </AvatarFallback>
+        </Avatar>
+      );
     }
   },
   {
@@ -81,5 +88,3 @@ export const socialLinkColumns: ColumnDef<SocialLink>[] = [
     },
   },
 ]
-
-    

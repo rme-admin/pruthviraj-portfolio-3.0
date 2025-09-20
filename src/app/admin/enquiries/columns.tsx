@@ -49,6 +49,14 @@ export const enquiryColumns: ColumnDef<Enquiry>[] = [
     header: "Email",
   },
   {
+    accessorKey: "phone",
+    header: "Phone",
+  },
+  {
+    accessorKey: "designation",
+    header: "Designation",
+  },
+  {
     accessorKey: "enquiryType",
     header: "Type",
     cell: ({ row }) => {

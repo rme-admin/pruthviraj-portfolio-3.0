@@ -1,4 +1,4 @@
-import { Code, Database, BrainCircuit, Star, Briefcase, GraduationCap, Mail, Phone, MapPin, BookOpen, Award, User, FileText, Camera, BookCopy } from 'lucide-react';
+import { Code, Database, BrainCircuit, Star, Briefcase, GraduationCap, Mail, Phone, MapPin, BookOpen, Award, User, FileText, Camera, BookCopy, TestTube, FunctionSquare, Laptop, Wind, Cloud, Lightbulb, Tractor, Dumbbell, Gamepad, Paintbrush, Plane } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface NavigationLink {
@@ -27,13 +27,20 @@ export const secondaryNavigationLinks: NavigationLink[] = [
   { name: 'Media', href: '#media' },
 ];
 
-export const skills: { name: string; icon: LucideIcon }[] = [
-  { name: 'React', icon: Code },
-  { name: 'Node.js', icon: Code },
-  { name: 'Python', icon: Code },
-  { name: 'SQL', icon: Database },
-  { name: 'TensorFlow', icon: BrainCircuit },
-  { name: 'Next.js', icon: Code },
+export const skills: { name: string; icon: LucideIcon, category: 'Technical' | 'Research' | 'Hobby' }[] = [
+  { name: 'React', icon: Code, category: 'Technical' },
+  { name: 'Node.js', icon: Code, category: 'Technical' },
+  { name: 'Python', icon: Code, category: 'Technical' },
+  { name: 'C', icon: Code, category: 'Technical' },
+  { name: 'C++', icon: Code, category: 'Technical' },
+  { name: 'SQL', icon: Database, category: 'Technical' },
+  { name: 'TensorFlow', icon: BrainCircuit, category: 'Research' },
+  { name: 'Next.js', icon: Code, category: 'Technical' },
+  { name: 'UV-Spectroscopy', icon: TestTube, category: 'Research' },
+  { name: 'Gaussian', icon: FunctionSquare, category: 'Research' },
+  { name: 'Badminton', icon: Dumbbell, category: 'Hobby' },
+  { name: 'IoT', icon: Lightbulb, category: 'Hobby' },
+  { name: 'Agriculture', icon: Tractor, category: 'Hobby' },
 ];
 
 export const education = [

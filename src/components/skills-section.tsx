@@ -11,7 +11,11 @@ import { skills } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 
 export default function SkillsSection() {
-    const [category, setCategory] = useState('All');
+    const [category, setCategory] = useState<'All' | 'Research' | 'Technical' | 'Hobby'>('All');
+
+    const filteredSkills = category === 'All'
+        ? skills
+        : skills.filter(skill => skill.category === category);
 
     return (
         <section id="skills" className="py-20 md:py-32 bg-background scroll-mt-20">
@@ -30,7 +34,7 @@ export default function SkillsSection() {
                         <CardTitle>{category} Skills</CardTitle>
                     </CardHeader>
                     <CardContent className="flex flex-wrap gap-2">
-                        {skills.map((skill, index) => (
+                        {filteredSkills.map((skill, index) => (
                             <Badge key={index} variant="secondary" className="text-sm flex items-center gap-1.5 py-1 px-2">
                                 <skill.icon className="h-4 w-4" />
                                 {skill.name}

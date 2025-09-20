@@ -2,9 +2,6 @@
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
   CardFooter,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -12,6 +9,13 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Save } from 'lucide-react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export default function MyInfoPage() {
   return (
@@ -22,7 +26,20 @@ export default function MyInfoPage() {
             <div className="grid grid-cols-1 gap-4 rounded-lg border p-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="prefix">Prefix</Label>
-                  <Input id="prefix" placeholder="Mr. / Mrs. / Dr." defaultValue="John" />
+                  <Select defaultValue="Mr.">
+                    <SelectTrigger id="prefix">
+                      <SelectValue placeholder="Select a prefix" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Mr.">Mr.</SelectItem>
+                      <SelectItem value="Ms.">Ms.</SelectItem>
+                      <SelectItem value="Dr.">Dr.</SelectItem>
+                      <SelectItem value="Miss">Miss</SelectItem>
+                      <SelectItem value="Mrs.">Mrs.</SelectItem>
+                      <SelectItem value="Master">Master</SelectItem>
+                      <SelectItem value="Sir">Sir</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                  <div />
                 <div className="space-y-2">

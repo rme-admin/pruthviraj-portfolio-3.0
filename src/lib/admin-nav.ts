@@ -28,7 +28,6 @@ export interface NavLink {
 }
 
 export const adminNavigationLinks: NavLink[] = [
-    { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'My Info', href: '/admin/my-info', icon: User },
     {
         name: 'Projects',

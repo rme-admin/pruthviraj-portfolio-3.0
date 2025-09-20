@@ -169,9 +169,9 @@ export default function ContactSection() {
                               </FormControl>
                               <SelectContent>
                                 <SelectItem value="Requesting for LOR">Requesting for LOR</SelectItem>
-                                <SelectItem value="SOP">SOP</SelectItem>
-                                <SelectItem value="Resume">Resume</SelectItem>
-                                <SelectItem value="Certificate info">Certificate info</SelectItem>
+                                <SelectItem value="Requesting for SOP">Requesting for SOP</SelectItem>
+                                <SelectItem value="Requesting for Resume">Requesting for Resume</SelectItem>
+                                <SelectItem value="Requesting for Certificate info">Requesting for Certificate info</SelectItem>
                                 <SelectItem value="Other">Other</SelectItem>
                               </SelectContent>
                             </Select>

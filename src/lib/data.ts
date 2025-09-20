@@ -116,13 +116,18 @@ export interface MediaItem {
   description: string;
 }
 
+export interface Achievement {
+    id: string;
+    description: string;
+}
+
 
 export const skills: Skill[] = data.skills;
 export const education: Education[] = data.education;
 export const experiences: Experience[] = data.experiences;
 export const researchProjects: ResearchProject[] = data.researchProjects;
 export const certifications: Certification[] = data.certifications;
-export const honorsAndAwards: string[] = data.honorsAndAwards;
+export const honorsAndAwards: Achievement[] = data.honorsAndAwards;
 export const publications: Publication[] = data.publications;
 export const projects: Project[] = data.projects;
 export const contactInfo: ContactInfo[] = data.contactInfo;

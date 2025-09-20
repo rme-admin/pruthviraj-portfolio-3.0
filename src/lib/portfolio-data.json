@@ -76,9 +76,9 @@
     { "name": "Google Certified Professional Data Engineer", "issuer": "Google Cloud", "url": "#" }
   ],
   "honorsAndAwards": [
-    "Innovatech Hackathon Winner - 2023",
-    "Employee of the Year, Data Systems Inc. - 2021",
-    "Dean's List, University of Technology"
+    { "id": "award-1", "description": "Innovatech Hackathon Winner - 2023" },
+    { "id": "award-2", "description": "Employee of the Year, Data Systems Inc. - 2021" },
+    { "id": "award-3", "description": "Dean's List, University of Technology" }
   ],
   "publications": [
     {

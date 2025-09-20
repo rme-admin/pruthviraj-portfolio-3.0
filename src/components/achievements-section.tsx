@@ -17,7 +17,7 @@ export default function AchievementsSection() {
                     <CardHeader><CardTitle>Honors & Awards</CardTitle></CardHeader>
                     <CardContent>
                         <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                            {honorsAndAwards.map((award, i) => <li key={i}>{award}</li>)}
+                            {honorsAndAwards.map((award) => <li key={award.id}>{award.description}</li>)}
                         </ul>
                     </CardContent>
                 </Card>

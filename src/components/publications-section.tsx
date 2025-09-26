@@ -12,10 +12,14 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
-import { publications } from '@/lib/data';
+import type { Publication } from '@/lib/types';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function PublicationsSection() {
+interface PublicationsSectionProps {
+    publications: Publication[];
+}
+
+export default function PublicationsSection({ publications }: PublicationsSectionProps) {
     return (
         <section id="publications" className="py-6 md:py-8 bg-card scroll-mt-20">
             <div className="container mx-auto px-4 md:px-6">
@@ -23,7 +27,7 @@ export default function PublicationsSection() {
                     <h2 className="font-headline text-4xl md:text-5xl font-bold">Publications</h2>
                 </div>
                 <div className="space-y-8">
-                    {publications.map((pub, index) => (
+                    {(publications || []).map((pub, index) => (
                         <Card key={index}>
                             <CardHeader className="p-4 pb-0">
                                 <CardTitle>{pub.title}</CardTitle>

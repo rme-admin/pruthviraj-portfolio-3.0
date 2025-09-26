@@ -9,7 +9,7 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { skills } from '@/lib/data';
+import type { Skill } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 
 // A mapping from string names to Lucide icon components
@@ -25,13 +25,16 @@ const iconMap: { [key: string]: lucide.LucideIcon } = {
     // Add other icons from data.ts here
 };
 
+interface SkillsSectionProps {
+    skills: Skill[];
+}
 
-export default function SkillsSection() {
+export default function SkillsSection({ skills }: SkillsSectionProps) {
     const [category, setCategory] = useState<'All' | 'Research' | 'Technical' | 'Hobby'>('All');
 
     const filteredSkills = category === 'All'
-        ? skills
-        : skills.filter(skill => skill.category === category);
+        ? (skills || [])
+        : (skills || []).filter(skill => skill.category === category);
 
     return (
         <section id="skills" className="py-6 md:py-8 bg-background scroll-mt-20">

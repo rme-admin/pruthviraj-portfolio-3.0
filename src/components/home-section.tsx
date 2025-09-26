@@ -1,35 +1,37 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowDown, Download, FileText } from 'lucide-react';
 
-export default function HomeSection() {
-  const profileImage = PlaceHolderImages.find(p => p.id === 'profile-picture');
+interface HomeSectionProps {
+  userDetails: any;
+}
+
+export default function HomeSection({ userDetails }: HomeSectionProps) {
+  const { first_name, last_name, short_description, profile_url } = userDetails || {};
 
   return (
     <section id="home" className="relative h-[80vh] min-h-[500px] w-full flex items-center justify-center text-center bg-background overflow-hidden pt-12 pb-10">
       <div className="absolute inset-0 bg-grid-slate-200/50 [mask-image:linear-gradient(to_bottom,white_20%,transparent_100%)] dark:bg-grid-slate-900/50"></div>
        <div className="container relative z-10 mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center">
-            {profileImage && (
+            {profile_url && (
                 <div className="mb-6 rounded-full overflow-hidden border-4 border-card shadow-lg w-48 h-48">
                     <Image
-                        src={profileImage.imageUrl}
-                        alt={profileImage.description}
+                        src={profile_url}
+                        alt={`${first_name} ${last_name}`}
                         width={192}
                         height={192}
                         className="object-cover"
                         priority
-                        data-ai-hint={profileImage.imageHint}
                     />
                 </div>
             )}
             <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight mb-4">
-                John Doe
+                {first_name} {last_name}
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl">
-                A passionate Senior Software Engineer transforming complex problems into elegant, user-centric solutions.
+                {short_description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" variant="outline">

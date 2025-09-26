@@ -1,7 +1,11 @@
 import { GraduationCap } from 'lucide-react';
-import { education } from '@/lib/data';
+import type { Education } from '@/lib/types';
 
-export default function EducationSection() {
+interface EducationSectionProps {
+    education: Education[];
+}
+
+export default function EducationSection({ education }: EducationSectionProps) {
     return (
         <section id="education" className="bg-background scroll-mt-20 py-6 md:py-8">
             <div className="container mx-auto px-4 md:px-6 pt-4">
@@ -10,7 +14,7 @@ export default function EducationSection() {
                 </div>
                 <div className="relative">
                     <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-border"></div>
-                    {education.map((edu, index) => (
+                    {(education || []).map((edu, index) => (
                         <div key={index} className="relative mb-8">
                             <div className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
                                 <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>

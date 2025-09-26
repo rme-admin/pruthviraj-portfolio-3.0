@@ -11,11 +11,10 @@ import {
   SheetDescription,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Project, ResearchProject } from '@/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Project } from '@/lib/types';
 import { ArrowUpRight, Calendar, MapPin } from 'lucide-react';
 
-type SelectedProject = (Project | ResearchProject) & { type: 'technical' | 'research' };
+type SelectedProject = Project & { type: 'Technical' | 'Research' };
 
 interface ProjectDetailsProps {
   project: SelectedProject | null;
@@ -26,8 +25,6 @@ interface ProjectDetailsProps {
 export default function ProjectDetails({ project, open, onOpenChange }: ProjectDetailsProps) {
   if (!project) return null;
 
-  const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
-
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
@@ -35,15 +32,14 @@ export default function ProjectDetails({ project, open, onOpenChange }: ProjectD
           <SheetTitle className="font-headline text-3xl mb-4">{project.title}</SheetTitle>
         </SheetHeader>
         <div className="space-y-6">
-          {image && (
+          {project.imageUrlId && (
             <div className="aspect-video overflow-hidden rounded-lg">
               <Image
-                src={image.imageUrl}
-                alt={image.description}
+                src={project.imageUrlId}
+                alt={project.title}
                 width={600}
                 height={400}
                 className="object-cover w-full h-full"
-                data-ai-hint={image.imageHint}
               />
             </div>
           )}
@@ -61,7 +57,7 @@ export default function ProjectDetails({ project, open, onOpenChange }: ProjectD
 
           <SheetDescription>{project.description}</SheetDescription>
 
-          {project.type === 'technical' && 'url' in project && (
+          {project.type === 'Technical' && project.url && (
             <Button asChild className="w-full">
               <Link href={project.url} target="_blank" rel="noopener noreferrer">
                 View Live Project

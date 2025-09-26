@@ -1,9 +1,8 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import {
   Card,
   CardContent,
@@ -12,25 +11,40 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { projects, researchProjects, Project, ResearchProject } from '@/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import type { Project } from '@/lib/types';
+import { getPortfolioData } from '@/lib/data';
 import { Calendar, MapPin, Eye } from 'lucide-react';
 import Header from './header';
 import Footer from '@/components/layout/footer';
 import ProjectDetails from './project-details';
 
-type ProjectType = 'technical' | 'research';
-type SelectedProject = (Project | ResearchProject) & { type: ProjectType };
+type ProjectType = 'Technical' | 'Research';
+type SelectedProject = Project & { type: ProjectType };
 
 export default function AllProjectsPage() {
-  const [activeTab, setActiveTab] = useState<ProjectType>('research');
+  const [activeTab, setActiveTab] = useState<ProjectType>('Research');
   const [selectedProject, setSelectedProject] = useState<SelectedProject | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [copyright, setCopyright] = useState('');
 
-  const handleViewDetails = (project: Project | ResearchProject, type: ProjectType) => {
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getPortfolioData();
+      if (data) {
+        setProjects(data.projects || []);
+        setCopyright(data.site_data?.copyright || '');
+      }
+    }
+    fetchData();
+  }, []);
+
+  const handleViewDetails = (project: Project, type: ProjectType) => {
     setSelectedProject({ ...project, type });
   };
-
-  const technicalProjects = projects;
+  
+  const technicalProjects = projects.filter(p => p.category === 'Technical');
+  const researchProjects = projects.filter(p => p.category === 'Research');
+  const currentProjects = activeTab === 'Technical' ? technicalProjects : researchProjects;
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -45,33 +59,30 @@ export default function AllProjectsPage() {
 
         <div className="flex justify-center gap-4 mb-8">
           <Button
-            variant={activeTab === 'research' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('research')}
+            variant={activeTab === 'Research' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('Research')}
           >
             Research Projects
           </Button>
           <Button
-            variant={activeTab === 'technical' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('technical')}
+            variant={activeTab === 'Technical' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('Technical')}
           >
             Technical Projects
           </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {activeTab === 'research' && researchProjects.map((project, index) => {
-            const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
-            return (
+          {currentProjects.map((project, index) => (
               <Card key={index} className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
-                {image && (
+                {project.imageUrlId && (
                   <div className="aspect-video overflow-hidden">
                     <Image
-                      src={image.imageUrl}
-                      alt={image.description}
+                      src={project.imageUrlId}
+                      alt={project.title}
                       width={600}
                       height={400}
                       className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                      data-ai-hint={image.imageHint}
                     />
                   </div>
                 )}
@@ -89,55 +100,16 @@ export default function AllProjectsPage() {
                     </div>
                 </CardContent>
                  <CardFooter>
-                    <Button onClick={() => handleViewDetails(project, 'research')} variant="outline" className="w-full">
+                    <Button onClick={() => handleViewDetails(project, activeTab)} variant="outline" className="w-full">
                         <Eye className="mr-2 h-4 w-4" />
                         View Details
                     </Button>
                 </CardFooter>
               </Card>
-            );
-          })}
-          {activeTab === 'technical' && technicalProjects.map((project, index) => {
-            const image = PlaceHolderImages.find(p => p.id === project.imageUrlId);
-            return (
-              <Card key={index} className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
-                {image && (
-                    <div className="aspect-video overflow-hidden">
-                      <Image
-                        src={image.imageUrl}
-                        alt={image.description}
-                        width={600}
-                        height={400}
-                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                        data-ai-hint={image.imageHint}
-                      />
-                    </div>
-                )}
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow space-y-2">
-                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <Calendar className="h-4 w-4" />
-                        <span>{project.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <MapPin className="h-4 w-4" />
-                        <span>{project.location}</span>
-                    </div>
-                </CardContent>
-                <CardFooter>
-                    <Button onClick={() => handleViewDetails(project, 'technical')} variant="outline" className="w-full">
-                        <Eye className="mr-2 h-4 w-4" />
-                        View Details
-                    </Button>
-                </CardFooter>
-              </Card>
-            );
-          })}
+            ))}
         </div>
       </main>
-      <Footer />
+      <Footer copyright={copyright} />
       {selectedProject && (
         <ProjectDetails
           project={selectedProject}

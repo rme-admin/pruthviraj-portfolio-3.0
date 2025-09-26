@@ -2,11 +2,15 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Footer() {
+interface FooterProps {
+  copyright: string;
+}
+
+export default function Footer({ copyright }: FooterProps) {
   return (
     <footer className="bg-muted py-6">
       <div className="container mx-auto px-4 md:px-6 text-center text-sm text-muted-foreground">
-        <p>&copy; {new Date().getFullYear()} Portfolio Pilot. All rights reserved.</p>
+        <p>{copyright || `© ${new Date().getFullYear()} Portfolio Pilot. All rights reserved.`}</p>
         <p className="mt-1">Designed with passion and code.</p>
         <p className="mt-2">
           <Link href="/auth/login" className="hover:text-primary transition-colors">

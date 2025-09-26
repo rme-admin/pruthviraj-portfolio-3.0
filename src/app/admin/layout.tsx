@@ -1,4 +1,4 @@
-
+//admin/layout.tsx
 'use client';
 import {
   SidebarProvider,

@@ -1,11 +1,9 @@
-
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import Image from 'next/image'
 import Link from 'next/link'
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -15,47 +13,42 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { PlaceHolderImages } from '@/lib/placeholder-images'
-import type { MediaItem } from '@/lib/data'
+import type { MediaItem } from '@/lib/types'
 
-export const mediaColumns: ColumnDef<MediaItem>[] = [
+export const createMediaColumns = (
+  deleteHandler: (mediaId: string) => void
+): ColumnDef<MediaItem>[] => [
   {
     accessorKey: "imageUrlId",
     header: "Image",
     cell: ({ row }) => {
-      const imageId = row.getValue("imageUrlId") as string;
-      const image = PlaceHolderImages.find(p => p.id === imageId);
-      return image ? (
+      const imageUrl = row.getValue("imageUrlId") as string;
+      return imageUrl ? (
         <Image
-          src={image.imageUrl}
-          alt={image.description}
+          src={imageUrl}
+          alt={row.original.caption}
           width={64}
           height={48}
           className="rounded-md object-cover w-16 h-12"
-          data-ai-hint={image.imageHint}
         />
       ) : <div className="w-16 h-12 bg-muted rounded-md" />;
     },
   },
   {
     accessorKey: "caption",
-    header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Caption
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        )
-      },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Caption <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
     id: "actions",
     cell: ({ row }) => {
       const mediaItem = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -66,16 +59,16 @@ export const mediaColumns: ColumnDef<MediaItem>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(mediaItem.caption)}
-            >
-              Copy caption
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link href={`/admin/media/edit/${mediaItem.id}`}>Edit media</Link>
             </DropdownMenuItem>
-             <DropdownMenuItem className="text-destructive">Delete media</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={() => deleteHandler(mediaItem.id)}
+            >
+              Delete media
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

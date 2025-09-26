@@ -1,10 +1,8 @@
-
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import Link from 'next/link'
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,22 +12,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import type { Reference } from '@/lib/data'
+import type { Reference } from '@/lib/types'
 
-export const referenceColumns: ColumnDef<Reference>[] = [
+export const createReferenceColumns = (
+  deleteHandler: (referenceId: string) => void
+): ColumnDef<Reference>[] => [
   {
     accessorKey: "fullName",
-    header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Full Name
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        )
-      },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Full Name <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
     accessorKey: "designation",
@@ -44,14 +41,9 @@ export const referenceColumns: ColumnDef<Reference>[] = [
     header: "Email",
   },
   {
-    accessorKey: "phone",
-    header: "Phone",
-  },
-  {
     id: "actions",
     cell: ({ row }) => {
       const reference = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -62,16 +54,16 @@ export const referenceColumns: ColumnDef<Reference>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(reference.fullName)}
-            >
-              Copy name
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link href={`/admin/references/edit/${reference.id}`}>Edit reference</Link>
             </DropdownMenuItem>
-             <DropdownMenuItem className="text-destructive">Delete reference</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={() => deleteHandler(reference.id)}
+            >
+              Delete reference
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

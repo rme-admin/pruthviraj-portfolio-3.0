@@ -1,3 +1,5 @@
+//publications/new/page.tsx
+
 
 import {
   Card,

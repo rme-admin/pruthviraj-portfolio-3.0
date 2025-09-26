@@ -1,10 +1,8 @@
-
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import Link from 'next/link'
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,25 +12,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import type { Publication } from '@/lib/data'
+import type { Publication } from '@/lib/types' // Use our central type definition
 
-export const publicationColumns: ColumnDef<Publication>[] = [
+// The function now accepts a delete handler
+export const createPublicationColumns = (
+  deleteHandler: (publicationId: string) => void
+): ColumnDef<Publication>[] => [
   {
     accessorKey: "title",
-    header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Title
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        )
-      },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Title
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
-    accessorKey: "authors",
+    accessorKey: "author", // Match the database column name
     header: "Authors",
   },
   {
@@ -43,7 +42,6 @@ export const publicationColumns: ColumnDef<Publication>[] = [
     id: "actions",
     cell: ({ row }) => {
       const publication = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -54,16 +52,16 @@ export const publicationColumns: ColumnDef<Publication>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(publication.title)}
-            >
-              Copy title
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link href={`/admin/publications/edit/${publication.id}`}>Edit publication</Link>
             </DropdownMenuItem>
-             <DropdownMenuItem className="text-destructive">Delete publication</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={() => deleteHandler(publication.id)}
+            >
+              Delete publication
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

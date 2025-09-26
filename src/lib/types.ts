@@ -52,7 +52,7 @@ export interface Achievement {
     description: string;
 }
 
-export interface Course {
+export interface Certification {
     id: string;
     name: string;
     issuer: string;
@@ -98,4 +98,16 @@ export interface PortfolioData {
   references: Reference[];
   media: MediaItem[];
   socialLinks: SocialLink[];
+}
+
+export interface Enquiry {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string; // Optional phone number
+  designation: string;
+  enquiryType: string; // Corresponds to the 'reason' column in the DB
+  message: string;
+  date: string;
+  status: 'pending' | 'responded' | 'prioritized';
 }

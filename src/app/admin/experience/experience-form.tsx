@@ -1,21 +1,19 @@
+//experience/experience-form.tsx
 
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import type { Experience } from '@/lib/data';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { apiClient } from '@/lib/api';
+import type { Experience } from '@/lib/types';
+import { Save } from 'lucide-react';
 
 const experienceFormSchema = z.object({
   role: z.string().min(2, 'Role must be at least 2 characters.'),
@@ -31,6 +29,10 @@ interface ExperienceFormProps {
 }
 
 export default function ExperienceForm({ experience }: ExperienceFormProps) {
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const form = useForm<ExperienceFormValues>({
     resolver: zodResolver(experienceFormSchema),
     defaultValues: {
@@ -41,9 +43,25 @@ export default function ExperienceForm({ experience }: ExperienceFormProps) {
     },
   });
 
-  function onSubmit(data: ExperienceFormValues) {
-    console.log(data);
-    // Here you would handle form submission, e.g., send to a server
+  async function onSubmit(data: ExperienceFormValues) {
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      if (experience) {
+        // Update existing entry
+        await apiClient(`/api/admin/experience/${experience.id}`, 'PUT', data);
+      } else {
+        // Create new entry
+        await apiClient('/api/admin/experience', 'POST', data);
+      }
+      router.push('/admin/experience');
+      router.refresh();
+    } catch (err: any) {
+      setError(err.message || 'An error occurred.');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -55,9 +73,7 @@ export default function ExperienceForm({ experience }: ExperienceFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Role</FormLabel>
-              <FormControl>
-                <Input placeholder="E.g., Senior Software Engineer" {...field} />
-              </FormControl>
+              <FormControl><Input placeholder="E.g., Senior Software Engineer" {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -68,25 +84,21 @@ export default function ExperienceForm({ experience }: ExperienceFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Company</FormLabel>
-              <FormControl>
-                <Input placeholder="E.g., Innovatech Solutions" {...field} />
-              </FormControl>
+              <FormControl><Input placeholder="E.g., Innovatech Solutions" {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
-            control={form.control}
-            name="period"
-            render={({ field }) => (
-                <FormItem>
-                <FormLabel>Period</FormLabel>
-                <FormControl>
-                    <Input placeholder="E.g., 2022 - Present" {...field} />
-                </FormControl>
-                <FormMessage />
-                </FormItem>
-            )}
+          control={form.control}
+          name="period"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Period</FormLabel>
+              <FormControl><Input placeholder="E.g., 2022 - Present" {...field} /></FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
         <FormField
           control={form.control}
@@ -94,18 +106,16 @@ export default function ExperienceForm({ experience }: ExperienceFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Description</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Describe your responsibilities and achievements..."
-                  className="min-h-[150px]"
-                  {...field}
-                />
-              </FormControl>
+              <FormControl><Textarea placeholder="Describe your responsibilities..." className="min-h-[150px]" {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Save Experience</Button>
+        {error && <p className="text-destructive">{error}</p>}
+        <Button type="submit" disabled={isSubmitting}>
+          <Save className="mr-2 h-4 w-4" />
+          {isSubmitting ? 'Saving...' : 'Save Experience'}
+        </Button>
       </form>
     </Form>
   );

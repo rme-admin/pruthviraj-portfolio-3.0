@@ -13,7 +13,7 @@ import {
 import { Slider } from '@/components/ui/slider';
 import { getCroppedImg } from './crop-image';
 import { Upload } from 'lucide-react';
-import type { Area, Point } from 'react-easy-crop/types';
+import type { Area, Point } from 'react-easy-crop';
 
 interface ImageCropperProps {
   onCropComplete: (croppedImage: string) => void;

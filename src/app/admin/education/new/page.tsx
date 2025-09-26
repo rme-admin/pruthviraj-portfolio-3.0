@@ -1,3 +1,4 @@
+//education/new/page.tsx
 
 import {
   Card,

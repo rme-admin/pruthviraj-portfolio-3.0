@@ -6,20 +6,20 @@ import type { PortfolioData } from './types';
  */
 export async function getPortfolioData(): Promise<PortfolioData | null> {
   // Directly use the environment variable for the server-side fetch.
-  const API_BASE_URL = process.env.API_BASE_URL;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL;
   if (!API_BASE_URL) {
-    console.error("Error: API_BASE_URL environment variable is not set.");
-    return null;
+    throw new Error("API_BASE_URL or NEXT_PUBLIC_API_BASE_URL environment variable is not set.");
   }
   
-  const apiUrl = `${API_BASE_URL}/api/portfolio-data`;
-
   try {
-    console.log(`Fetching data from: ${apiUrl}`);
-    const res = await fetch(apiUrl, { cache: 'no-store' });
+    const res = await fetch(`${API_BASE_URL}/api/portfolio-data`, { cache: 'no-store' });
 
     if (!res.ok) {
-      console.error(`API request failed: ${res.status} ${res.statusText}`);
+      if (res.status === 404) {
+        console.error(`API request failed: 404 Not Found. Check if the endpoint ${API_BASE_URL}/api/portfolio-data exists and is correct.`);
+      } else {
+        console.error(`API request failed: ${res.status} ${res.statusText}`);
+      }
       const errorBody = await res.text();
       console.error(`Error body: ${errorBody}`);
       return null;
@@ -37,11 +37,11 @@ export async function getPortfolioData(): Promise<PortfolioData | null> {
         profile_url: createFullUrl(rawData.user_details.profile_url),
       },
       
-      skills: Object.entries(rawData.skills || {}).flatMap(([category, skillNames]: [string, any[]], catIndex) => 
-        (skillNames || []).map((skill: any, skillIndex) => ({
+      skills: Object.entries(rawData.skills || {}).flatMap(([category, skillNames], catIndex) =>
+        (Array.isArray(skillNames) ? skillNames : []).map((skill: any, skillIndex: number) => ({
           id: `skill-${category}-${catIndex}-${skillIndex}`,
-          name: typeof skill === 'string' ? skill : skill.name,
-          icon: skill.icon || 'Code', 
+          name: typeof skill === 'string' ? skill : skill?.name,
+          icon: typeof skill === 'object' && skill?.icon ? skill.icon : 'Code',
           category: category as 'Technical' | 'Research' | 'Hobby',
         }))
       ),
@@ -155,3 +155,5 @@ export const secondaryNavigationLinks: any[] = [
 
 export const contactInfo: any[] = [];
 export const enquiries: any[] = [];
+
+

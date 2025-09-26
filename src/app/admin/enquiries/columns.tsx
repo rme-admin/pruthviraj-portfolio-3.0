@@ -1,9 +1,7 @@
-
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal, ArrowUpDown, Eye } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -12,86 +10,99 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-
-import type { Enquiry } from '@/lib/data'
+import type { Enquiry } from '@/lib/types'
 import { Badge } from "@/components/ui/badge";
 
-export const enquiryColumns: ColumnDef<Enquiry>[] = [
+export const createEnquiryColumns = (
+  changeStatusHandler: (enquiryId: string, newStatus: Enquiry['status']) => void,
+  deleteHandler: (enquiryId: string) => void
+): ColumnDef<Enquiry>[] => [
   {
     accessorKey: "date",
-     header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Date
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        )
-      },
+     header: ({ column }) => (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
   },
   {
     accessorKey: "name",
     header: "Name",
   },
   {
-    accessorKey: "email",
-    header: "Email",
-  },
-  {
     accessorKey: "enquiryType",
     header: "Reason",
+    cell: ({ row }) => <Badge variant="outline">{row.getValue("enquiryType")}</Badge>
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
     cell: ({ row }) => {
-        const type = row.getValue("enquiryType") as string;
-        return <Badge variant="outline">{type}</Badge>
+      const status = row.getValue("status") as Enquiry['status'];
+      const variant: "default" | "secondary" | "destructive" = 
+          status === 'responded' ? 'default' 
+        : status === 'prioritized' ? 'destructive' 
+        : 'secondary';
+      return <Badge variant={variant} className="capitalize">{status}</Badge>
     }
   },
   {
     id: "actions",
     cell: ({ row }) => {
       const enquiry = row.original
-
       return (
         <Dialog>
             <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
+                  <span className="sr-only">Open menu</span>
+                  <MoreHorizontal className="h-4 w-4" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(enquiry.email)}
-                >
-                Copy email
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
                 <DialogTrigger asChild>
                     <DropdownMenuItem>
                         <Eye className="mr-2 h-4 w-4" />
                         View Message
                     </DropdownMenuItem>
                 </DialogTrigger>
-                <DropdownMenuItem className="text-destructive">Delete enquiry</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Change Status</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => changeStatusHandler(enquiry.id, 'pending')}>Mark as Pending</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => changeStatusHandler(enquiry.id, 'responded')}>Mark as Responded</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => changeStatusHandler(enquiry.id, 'prioritized')}>Mark as Prioritized</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="text-destructive"
+                  onClick={() => deleteHandler(enquiry.id)}
+                >
+                  Delete enquiry
+                </DropdownMenuItem>
             </DropdownMenuContent>
             </DropdownMenu>
+            {/* --- THIS IS THE FIX: The dialog content is now fully implemented --- */}
             <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                    <DialogTitle>Enquiry Details</DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4 text-sm">
+                <DialogHeader><DialogTitle>Enquiry Details</DialogTitle></DialogHeader>
+                <div className="space-y-4 py-4 text-sm">
                     <div className="grid grid-cols-4 items-center gap-4">
                         <p className="text-muted-foreground col-span-1">Name</p>
                         <p className="font-medium col-span-3">{enquiry.name}</p>
@@ -122,7 +133,7 @@ export const enquiryColumns: ColumnDef<Enquiry>[] = [
                     </div>
                     <div className="space-y-2">
                         <p className="text-muted-foreground">Message</p>
-                        <div className="p-4 bg-muted rounded-md">
+                        <div className="p-4 bg-muted rounded-md min-h-[100px] whitespace-pre-wrap">
                             {enquiry.message}
                         </div>
                     </div>

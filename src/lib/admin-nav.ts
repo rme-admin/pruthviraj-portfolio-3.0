@@ -1,6 +1,7 @@
 
 import {
     LayoutDashboard,
+    ShieldAlert,
     Home,
     FileText,
     List,
@@ -72,4 +73,5 @@ export const adminNavigationLinks: NavLink[] = [
         icon: Image,
     },
     { name: 'Social Links', href: '/admin/social', icon: LinkIcon },
+    { name: 'Update Password', href: '/admin/reset-password', icon: ShieldAlert },
 ];

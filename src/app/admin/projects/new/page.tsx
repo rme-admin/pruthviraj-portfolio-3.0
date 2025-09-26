@@ -1,4 +1,3 @@
-
 import {
   Card,
   CardContent,
@@ -16,6 +15,7 @@ export default function NewProjectPage() {
         <CardDescription>Fill out the details for your new project.</CardDescription>
       </CardHeader>
       <CardContent>
+        {/* We render the form without a 'project' prop for creation */}
         <ProjectForm />
       </CardContent>
     </Card>

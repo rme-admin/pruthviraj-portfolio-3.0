@@ -1,10 +1,8 @@
-
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import Link from 'next/link'
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,26 +12,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import type { Education } from '@/lib/data'
+import type { Education } from '@/lib/types' // Use our central types
 import { Badge } from "@/components/ui/badge"
 
-export const educationColumns: ColumnDef<Education>[] = [
+// Columns now accept a delete handler function
+export const createEducationColumns = (
+  deleteHandler: (educationId: string) => void
+): ColumnDef<Education>[] => [
   {
-    accessorKey: "degree",
-    header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Degree
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        )
-      },
+    accessorKey: "course", // Changed from degree to course to match API
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Course <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
-    accessorKey: "institution",
+    accessorKey: "institute", // Changed from institution to institute
     header: "Institution",
   },
   {
@@ -44,20 +39,20 @@ export const educationColumns: ColumnDef<Education>[] = [
     id: "marks",
     header: "Marks",
     cell: ({ row }) => {
-      const education = row.original
-      if (!education.marksScored) return null;
+      const edu = row.original;
+      if (!edu.mark_obtained) return null;
       
-      const marksString = education.marksType === 'percentage'
-        ? `${education.marksScored}%`
-        : education.marksOutOf
-        ? `${education.marksScored} / ${education.marksOutOf}`
-        : education.marksScored;
+      const marksString = edu.entry_type === 'percentage'
+        ? `${edu.mark_obtained}%`
+        : edu.max_mark
+        ? `${edu.mark_obtained} / ${edu.max_mark}`
+        : edu.mark_obtained;
 
       return (
         <div className="flex items-center gap-2">
             <span>{marksString}</span>
-            {education.marksType && (
-                <Badge variant="secondary" className="capitalize">{education.marksType}</Badge>
+            {edu.entry_type && (
+                <Badge variant="secondary" className="capitalize">{edu.entry_type}</Badge>
             )}
         </div>
       )
@@ -67,7 +62,6 @@ export const educationColumns: ColumnDef<Education>[] = [
     id: "actions",
     cell: ({ row }) => {
       const education = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -78,16 +72,16 @@ export const educationColumns: ColumnDef<Education>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(education.degree)}
-            >
-              Copy degree
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link href={`/admin/education/edit/${education.id}`}>Edit education</Link>
             </DropdownMenuItem>
-             <DropdownMenuItem className="text-destructive">Delete education</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={() => deleteHandler(education.id)}
+            >
+              Delete education
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

@@ -6,23 +6,33 @@ import { getPortfolioData } from '@/lib/data';
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPortfolioData();
 
+  const PLACEHOLDER_ICON = '/placeholder-icon.png'; // Place this image in your public folder
+
   if (!data || !data.site_data) {
     return {
       title: 'Portfolio Pilot',
       description: 'A personal portfolio to showcase projects and skills.',
+      icons: {
+        icon: PLACEHOLDER_ICON,
+        shortcut: PLACEHOLDER_ICON,
+      },
     };
   }
 
   const { site_data } = data;
-  const API_BASE_URL = process.env.API_BASE_URL;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL;
 
   return {
     title: site_data.title,
     description: site_data.description, // Assuming description exists in site_data
     keywords: site_data.keywords,
     icons: {
-      icon: site_data.icon_url ? `${API_BASE_URL}/${site_data.icon_url}` : undefined,
-      shortcut: site_data.favicon_url ? `${API_BASE_URL}/${site_data.favicon_url}` : undefined,
+      icon: site_data.icon_url
+        ? `${API_BASE_URL}/${site_data.icon_url}`
+        : PLACEHOLDER_ICON,
+      shortcut: site_data.favicon_url
+        ? `${API_BASE_URL}/${site_data.favicon_url}`
+        : PLACEHOLDER_ICON,
     },
   };
 }

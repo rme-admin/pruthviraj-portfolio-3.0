@@ -1,10 +1,8 @@
-
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import Link from 'next/link'
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,22 +12,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import type { Experience } from '@/lib/data'
+import type { Experience } from '@/lib/types' // Use the central type definition
 
-export const experienceColumns: ColumnDef<Experience>[] = [
+// The function now accepts a delete handler
+export const createExperienceColumns = (
+  deleteHandler: (experienceId: string) => void
+): ColumnDef<Experience>[] => [
   {
     accessorKey: "role",
-    header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Role
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        )
-      },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Role
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
     accessorKey: "company",
@@ -43,7 +42,6 @@ export const experienceColumns: ColumnDef<Experience>[] = [
     id: "actions",
     cell: ({ row }) => {
       const experience = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -54,16 +52,16 @@ export const experienceColumns: ColumnDef<Experience>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(experience.role)}
-            >
-              Copy role
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link href={`/admin/experience/edit/${experience.id}`}>Edit experience</Link>
             </DropdownMenuItem>
-             <DropdownMenuItem className="text-destructive">Delete experience</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={() => deleteHandler(experience.id)}
+            >
+              Delete experience
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

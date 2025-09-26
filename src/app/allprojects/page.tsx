@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -20,6 +19,8 @@ import ProjectDetails from './project-details';
 
 type ProjectType = 'Technical' | 'Research';
 type SelectedProject = Project & { type: ProjectType };
+
+const PLACEHOLDER_IMAGE = '/placeholder-icon.png'; // Place this in your public folder
 
 export default function AllProjectsPage() {
   const [activeTab, setActiveTab] = useState<ProjectType>('Research');
@@ -45,6 +46,8 @@ export default function AllProjectsPage() {
   const technicalProjects = projects.filter(p => p.category === 'Technical');
   const researchProjects = projects.filter(p => p.category === 'Research');
   const currentProjects = activeTab === 'Technical' ? technicalProjects : researchProjects;
+
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL || '';
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -78,11 +81,18 @@ export default function AllProjectsPage() {
                 {project.imageUrlId && (
                   <div className="aspect-video overflow-hidden">
                     <Image
-                      src={project.imageUrlId}
+                      src={
+                        project.imageUrlId.startsWith('http')
+                          ? project.imageUrlId
+                          : `${API_BASE_URL}/${project.imageUrlId}`
+                      }
                       alt={project.title}
                       width={600}
                       height={400}
                       className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                      onError={(e) => {
+                        e.currentTarget.src = PLACEHOLDER_IMAGE;
+                      }}
                     />
                   </div>
                 )}

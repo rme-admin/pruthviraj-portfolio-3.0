@@ -1,10 +1,8 @@
-
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import Link from 'next/link'
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,28 +12,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import type { Achievement } from '@/lib/data'
+import type { Achievement } from '@/lib/types' // Use our central types
 
-export const achievementColumns: ColumnDef<Achievement>[] = [
+export const createAchievementColumns = (
+  deleteHandler: (achievementId: string) => void
+): ColumnDef<Achievement>[] => [
   {
     accessorKey: "description",
-    header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Description
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        )
-      },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Description
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
     id: "actions",
     cell: ({ row }) => {
       const achievement = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -46,16 +43,16 @@ export const achievementColumns: ColumnDef<Achievement>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(achievement.description)}
-            >
-              Copy description
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link href={`/admin/achievements/edit/${achievement.id}`}>Edit achievement</Link>
             </DropdownMenuItem>
-             <DropdownMenuItem className="text-destructive">Delete achievement</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={() => deleteHandler(achievement.id)}
+            >
+              Delete achievement
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

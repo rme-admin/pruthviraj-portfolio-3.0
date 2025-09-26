@@ -19,6 +19,7 @@ import Link from 'next/link';
 import { apiClient } from '@/lib/api'; // Import our reusable API client
 import Cookies from 'js-cookie'; 
 
+export const dynamic = 'force-dynamic';
 
 export default function LoginPage() {
   // --- 2. Set up state management and routing ---

@@ -43,6 +43,9 @@ interface MyInfoFiles {
   cover_letter?: File;
 }
 
+export const dynamic = 'force-dynamic';
+
+
 export default function MyInfoPage() {
   // 1. State management for the component
   const [formData, setFormData] = useState<MyInfoData | null>(null);

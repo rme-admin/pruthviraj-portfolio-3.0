@@ -22,6 +22,9 @@ type SelectedProject = Project & { type: ProjectType };
 
 const PLACEHOLDER_IMAGE = '/placeholder-icon.png'; // Place this in your public folder
 
+export const dynamic = 'force-dynamic';
+
+
 export default function AllProjectsPage() {
   const [activeTab, setActiveTab] = useState<ProjectType>('Research');
   const [selectedProject, setSelectedProject] = useState<SelectedProject | null>(null);

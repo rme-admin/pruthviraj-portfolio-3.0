@@ -7,6 +7,9 @@ import { apiClient } from '@/lib/api';
 import { useAuth } from '@/hooks/useAuth';
 import type { Achievement } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
+
 export default function EditAchievementPage() {
     useAuth(); // Middleware handles security, but this is a good client-side fallback
     const params = useParams();

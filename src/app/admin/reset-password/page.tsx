@@ -3,6 +3,8 @@
 import React, { useState, FormEvent } from 'react';
 import { apiClient } from '@/lib/api'; // Make sure to import your API client
 import { useAuth } from '@/hooks/useAuth'; // Protect the page
+export const dynamic = 'force-dynamic';
+
 
 const ResetPasswordPage = () => {
     useAuth(); // Ensure the user is logged in to access this page

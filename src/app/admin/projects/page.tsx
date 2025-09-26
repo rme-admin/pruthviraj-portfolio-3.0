@@ -2,6 +2,9 @@
 import { getAdminProjects } from '@/lib/actions';
 import ProjectsClient from './projects-client';
 
+export const dynamic = 'force-dynamic';
+
+
 // 2. The page component is now very clean. It's a Server Component by default.
 export default async function ProjectsPage() {
   

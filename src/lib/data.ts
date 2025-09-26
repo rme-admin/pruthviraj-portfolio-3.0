@@ -32,10 +32,18 @@ export async function getPortfolioData(): Promise<PortfolioData | null> {
 
     const transformedData: PortfolioData = {
       site_data: rawData.site_data,
-      user_details: {
+      user_details: rawData.user_details ? {
+        // First, spread all existing properties from the API response
         ...rawData.user_details,
+        
+        // Then, explicitly ensure the email is included (it should already be there)
+        email: rawData.user_details.email, 
+
+        // Finally, create the full URLs for all file paths
         profile_url: createFullUrl(rawData.user_details.profile_url),
-      },
+        cv_url: createFullUrl(rawData.user_details.cv_url),
+        cover_letter_url: createFullUrl(rawData.user_details.cover_letter_url),
+      } : null,
       
       skills: Object.entries(rawData.skills || {}).flatMap(([category, skillNames], catIndex) =>
         (Array.isArray(skillNames) ? skillNames : []).map((skill: any, skillIndex: number) => ({
@@ -90,7 +98,7 @@ export async function getPortfolioData(): Promise<PortfolioData | null> {
         description: ach.achievement,
       })),
 
-      courses: (rawData.courses_n_certificates || []).map((course: any, index: number) => ({
+      courses_n_certificates: (rawData.courses_n_certificates || []).map((course: any, index: number) => ({
           id: `course-${index}`,
           name: course.course_name,
           issuer: course.issuer,
@@ -115,7 +123,7 @@ export async function getPortfolioData(): Promise<PortfolioData | null> {
         description: item.description,
       })),
 
-      socialLinks: (rawData.social_links || []).map((link: any, index: number) => ({
+      social_links: (rawData.social_links || []).map((link: any, index: number) => ({
         id: `social-${index}`,
         name: link.name,
         url: link.url,

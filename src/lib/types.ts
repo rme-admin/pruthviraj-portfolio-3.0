@@ -32,10 +32,11 @@ export interface Project {
   title: string;
   description: string;
   imageUrlId: string;
-  url: string;
+  //img_url: string;
   date: string;
   location: string;
   category: 'Technical' | 'Research';
+  img_url?: string | null; 
 }
 
 export interface Publication {
@@ -57,6 +58,15 @@ export interface Certification {
     name: string;
     issuer: string;
     certificateFile: string;
+    url?: string;
+}
+
+// Define Course interface
+export interface Course {
+    id: string;
+    name: string;
+    issuer: string;
+    certificateFile?: string;
     url?: string;
 }
 
@@ -94,10 +104,10 @@ export interface PortfolioData {
   projects: Project[];
   publications: Publication[];
   achievements: Achievement[];
-  courses: Course[];
+  courses_n_certificates: Course[];
   references: Reference[];
   media: MediaItem[];
-  socialLinks: SocialLink[];
+  social_links: SocialLink[];
 }
 
 export interface Enquiry {

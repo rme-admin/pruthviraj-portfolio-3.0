@@ -50,7 +50,7 @@ export async function getAdminProjects(): Promise<Project[]> {
 export async function getAdminEducation(): Promise<Education[]> {
   try {
     // Read the cookie store
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const tokenCookie = cookieStore.get('authToken');
 
     if (!tokenCookie || !tokenCookie.value) {
@@ -83,7 +83,7 @@ export async function getAdminEducation(): Promise<Education[]> {
 // =================================================================
 export async function getAdminExperience(): Promise<Experience[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
     if (!token) {
       console.log('Authentication token not found for experience.');
@@ -110,7 +110,8 @@ export async function getAdminExperience(): Promise<Experience[]> {
 
 export async function getAdminPublications(): Promise<Publication[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
+    
     const token = cookieStore.get('authToken')?.value;
     if (!token) return [];
 
@@ -136,7 +137,7 @@ export async function getAdminPublications(): Promise<Publication[]> {
 
 export async function getAdminAchievements(): Promise<Achievement[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
     if (!token) return [];
 
@@ -168,7 +169,7 @@ export async function getAdminAchievements(): Promise<Achievement[]> {
 // =================================================================
 export async function getAdminSkills(): Promise<Skill[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
     if (!token) return [];
 
@@ -203,7 +204,7 @@ export async function getAdminSkills(): Promise<Skill[]> {
 // =================================================================
 export async function getAdminCourses(): Promise<Certification[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
     if (!token) return [];
 
@@ -238,7 +239,7 @@ export async function getAdminCourses(): Promise<Certification[]> {
 // =================================================================
 export async function getAdminReferences(): Promise<Reference[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
     if (!token) return [];
 
@@ -276,7 +277,7 @@ export async function getAdminReferences(): Promise<Reference[]> {
 // =================================================================
 export async function getAdminMedia(): Promise<MediaItem[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
     if (!token) return [];
 
@@ -312,7 +313,7 @@ export async function getAdminMedia(): Promise<MediaItem[]> {
 // =================================================================
 export async function getAdminSocialLinks(): Promise<SocialLink[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
     if (!token) return [];
 
@@ -349,7 +350,7 @@ export async function getAdminSocialLinks(): Promise<SocialLink[]> {
 
 export async function getAdminEnquiries(): Promise<Enquiry[]> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
     if (!token) return [];
 

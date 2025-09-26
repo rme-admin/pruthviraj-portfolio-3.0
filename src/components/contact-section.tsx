@@ -1,6 +1,6 @@
 // src/components/contact-section.tsx
 'use client';
-
+import { useActionState } from 'react';
 import React, { useEffect, useRef } from 'react';
 import { useFormState } from 'react-dom';
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -131,7 +131,7 @@ export default function ContactSection({ contactInfo, socialLinks }: ContactSect
         <div className="text-center mb-16">
           <h2 className="font-headline text-4xl md:text-5xl font-bold">Get In Touch</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            Have a project in mind or just want to say hi? I'd love to hear from you.
+            Have a project that might suit my area of expertise or just want to say hi? I'd love to hear from you.
           </p>
         </div>
 

@@ -19,29 +19,43 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   const portfolioData = await getPortfolioData();
 
-  // If data fetching fails, we render the page with empty/null data.
-  // The individual components are responsible for handling this gracefully.
-  const userDetails = portfolioData?.user_details || null;
-  const technicalProjects = portfolioData?.projects.filter(p => p.category === 'Technical') || [];
-  const researchProjects = portfolioData?.projects.filter(p => p.category === 'Research') || [];
-  const education = portfolioData?.education || [];
-  const experiences = portfolioData?.experiences || [];
-  const publications = portfolioData?.publications || [];
-  const achievements = portfolioData?.achievements || [];
-  const skills = portfolioData?.skills || [];
-  const certifications = portfolioData?.courses || [];
-  const references = portfolioData?.references || [];
-  const socialLinks = portfolioData?.socialLinks || [];
-  const media = portfolioData?.media || [];
-  const copyright = portfolioData?.site_data?.copyright || `© ${new Date().getFullYear()} Portfolio Pilot. All rights reserved.`;
-  
-  // The contactInfo object is derived from user_details
-  const contactInfo = userDetails ? {
-    email: userDetails.email, // Assuming email is available
-    phone_number: userDetails.phone_number,
-    address: userDetails.address
-  } : {};
+    
+  // First, handle the case where the entire API call fails.
+  if (!portfolioData) {
+    return (
+      <main className="flex-grow">
+        <div className="container mx-auto py-10 text-center">
+          <p className="text-destructive font-bold">Error: Could not load portfolio data.</p>
+          <p className="text-muted-foreground">The backend API might be offline or inaccessible.</p>
+        </div>
+      </main>
+    );
+  }
 
+  // If we get here, portfolioData is a valid object.
+  // Now we can safely destructure with individual fallbacks.
+  const {
+    user_details: userDetails, // Can be null if not found
+    projects = [],
+    education = [],
+    experiences = [],
+    publications = [],
+    achievements = [],
+    skills = [],
+    courses_n_certificates: certifications = [], // Rename and provide fallback
+    references = [],
+    social_links: socialLinks = [], // Rename and provide fallback
+    media = [],
+    site_data: siteData, // Can be null if not found
+  } = portfolioData;
+
+  // Now that 'projects' is guaranteed to be an array, this is safe.
+  const technicalProjects = projects.filter(p => p.category === 'Technical');
+  const researchProjects = projects.filter(p => p.category === 'Research');
+
+  const copyright = siteData?.copyright || `© ${new Date().getFullYear()} Pruthviraj Portfolio. All rights reserved.`;
+
+  const contactInfo = userDetails; 
 
   return (
     <div className="flex flex-col min-h-screen">

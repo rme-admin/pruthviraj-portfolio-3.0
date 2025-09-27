@@ -51,7 +51,7 @@ export default function AboutSection({ userDetails, technicalProjects, researchP
                                         <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                                             <div className="p-1 h-full">
                                                 <Card className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1 h-full">
-                                                    <Link href={project.url} target="_blank" rel="noopener noreferrer" className="block">
+                                                    <Link href={project.live_link} target="_blank" rel="noopener noreferrer" className="block">
                                                         {project.imageUrlId && (
                                                             <div className="aspect-video overflow-hidden">
                                                             <Image
@@ -82,7 +82,7 @@ export default function AboutSection({ userDetails, technicalProjects, researchP
                                                     </CardContent>
                                                     <CardFooter>
                                                         <Button asChild variant="link" className="p-0 h-auto">
-                                                            <Link href={project.url} target="_blank" rel="noopener noreferrer">
+                                                            <Link href={project.live_link} target="_blank" rel="noopener noreferrer">
                                                                 View Project <ArrowUpRight className="ml-1 h-4 w-4" />
                                                             </Link>
                                                         </Button>

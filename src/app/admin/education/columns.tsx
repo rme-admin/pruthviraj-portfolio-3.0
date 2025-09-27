@@ -40,19 +40,19 @@ export const createEducationColumns = (
     header: "Marks",
     cell: ({ row }) => {
       const edu = row.original;
-      if (!edu.mark_obtained) return null;
+      if (!edu.marksScored) return null;
       
-      const marksString = edu.entry_type === 'percentage'
-        ? `${edu.mark_obtained}%`
-        : edu.max_mark
-        ? `${edu.mark_obtained} / ${edu.max_mark}`
-        : edu.mark_obtained;
+      const marksString = edu.marksType === 'percentage'
+        ? `${edu.marksScored}%`
+        : edu.marksOutOf
+        ? `${edu.marksScored} / ${edu.marksOutOf}`
+        : edu.marksScored;
 
       return (
         <div className="flex items-center gap-2">
             <span>{marksString}</span>
-            {edu.entry_type && (
-                <Badge variant="secondary" className="capitalize">{edu.entry_type}</Badge>
+            {edu.marksType && (
+                <Badge variant="secondary" className="capitalize">{edu.marksType}</Badge>
             )}
         </div>
       )

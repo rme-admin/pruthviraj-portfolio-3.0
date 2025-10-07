@@ -13,7 +13,10 @@ import MediaSection from '@/components/media-section';
 import EducationSection from '@/components/education-section';
 import ExperienceSection from '@/components/experience-section';
 import { getPortfolioData } from '@/lib/data';
+import ProjectsSection from '@/components/projects-section'; 
+
 export const dynamic = 'force-dynamic';
+
 
 
 export default async function Home() {

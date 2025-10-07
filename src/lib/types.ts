@@ -32,7 +32,7 @@ export interface Project {
   title: string;
   description: string;
   imageUrlId: string;
-  //img_url: string;
+  live_link: string;
   date: string;
   location: string;
   category: 'Technical' | 'Research';

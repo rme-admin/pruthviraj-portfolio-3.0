@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { submitLorRequest, FormState } from '@/app/actions';
 import { useToast } from "@/hooks/use-toast"
-import type { Reference } from '@/lib/data';
+//import type { Reference } from '@/lib/data';
+import type { Reference } from '@/lib/types';
 
 import { Button } from "@/components/ui/button"
 import {

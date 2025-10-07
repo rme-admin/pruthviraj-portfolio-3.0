@@ -57,9 +57,9 @@ export default function ProjectDetails({ project, open, onOpenChange }: ProjectD
 
           <SheetDescription>{project.description}</SheetDescription>
 
-          {project.type === 'Technical' && project.url && (
+          {project.type === 'Technical' && project.live_link && (
             <Button asChild className="w-full">
-              <Link href={project.url} target="_blank" rel="noopener noreferrer">
+              <Link href={project.live_link} target="_blank" rel="noopener noreferrer">
                 View Live Project
                 <ArrowUpRight className="ml-2 h-4 w-4" />
               </Link>

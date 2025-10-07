@@ -44,7 +44,7 @@ export default function Header() {
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="#home" className="flex items-center gap-2">
           <Rocket className="h-7 w-7 text-primary" />
-          <span className="font-headline text-2xl font-bold">Portfolio Pilot</span>
+          <span className="font-headline text-2xl font-bold">Pruthviraj B | Portfolio</span>
         </Link>
         
         <nav className="hidden md:flex gap-4">
@@ -75,7 +75,7 @@ export default function Header() {
               <div className="flex flex-col gap-2 p-4">
                  <Link href="#home" className="flex items-center gap-2 mb-4 p-4" onClick={() => setMobileMenuOpen(false)}>
                     <Rocket className="h-7 w-7 text-primary" />
-                    <span className="font-headline text-2xl font-bold">Portfolio Pilot</span>
+                    <span className="font-headline text-2xl font-bold">Pruthviraj B | Portfolio</span>
                 </Link>
                 <NavLinks setMobileMenuOpen={setMobileMenuOpen} />
               </div>

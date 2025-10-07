@@ -37,7 +37,7 @@ export default function PublicationForm({ publication }: PublicationFormProps) {
     resolver: zodResolver(publicationFormSchema),
     defaultValues: {
       title: publication?.title || '',
-      author: publication?.author || '',
+      author: publication?.authors || '',
       venue: publication?.venue || '',
       doi: publication?.doi || '',
       summary: publication?.summary || '',

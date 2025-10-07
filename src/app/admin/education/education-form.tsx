@@ -46,13 +46,13 @@ export default function EducationForm({ education }: EducationFormProps) {
   const form = useForm<EducationFormValues>({
     resolver: zodResolver(educationFormSchema),
     defaultValues: {
-      course: education?.course || '',
-      institute: education?.institute || '',
+      course: education?.degree || '',
+      institute: education?.institution || '',
       period: education?.period || '',
       description: education?.description || '',
-      entry_type: education?.entry_type,
-      mark_obtained: education?.mark_obtained || '',
-      max_mark: education?.max_mark || '',
+      entry_type: education?.marksType,
+      mark_obtained: education?.marksScored || '',
+      max_mark: education?.marksOutOf || '',
     },
   });
 

@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (!data || !data.site_data) {
     return {
-      title: 'Portfolio Pilot',
+      title: 'Pruthviraj Portfolio',
       description: 'A personal portfolio to showcase projects and skills.',
       icons: {
         icon: PLACEHOLDER_ICON,

@@ -52,7 +52,7 @@ export default function AboutSection({ userDetails, technicalProjects, researchP
                                             <div className="p-1 h-full">
                                                 <Card className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1 h-full">
                                                     {/* The image can be wrapped in a link */}
-                                                    <Link href={project.url} target="_blank" rel="noopener noreferrer" className="block">
+                                                    <Link href={typeof project.url === 'string' ? project.url : '#'} target="_blank" rel="noopener noreferrer" className="block">
                                                         {project.imageUrlId && (
                                                             <div className="aspect-video overflow-hidden">
                                                             <Image
@@ -84,7 +84,7 @@ export default function AboutSection({ userDetails, technicalProjects, researchP
                                                     <CardFooter>
                                                         {/* --- THIS IS THE FIX --- */}
                                                         {/* Use 'project.url' which is guaranteed to be a string */}
-                                                        {project.url && project.url !== '#' && (
+                                                        {typeof project.url === 'string' && project.url !== '#' && (
                                                             <Button asChild variant="link" className="p-0 h-auto">
                                                                 <Link href={project.url} target="_blank" rel="noopener noreferrer">
                                                                     View Project <ArrowUpRight className="ml-1 h-4 w-4" />

@@ -1,3 +1,5 @@
+// src/components/projects-section.tsx
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -77,7 +79,7 @@ export default function ProjectsSection({ technicalProjects, researchProjects }:
                         {project.imageUrlId && (
                             <div className="aspect-video overflow-hidden">
                             <Image
-                                src={project.imageUrlId} // Use the live image URL
+                                src={project.imageUrlId} 
                                 alt={project.title}
                                 width={600}
                                 height={400}

@@ -16,7 +16,7 @@ import {
     CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
-import type { Project } from '@/lib/types';
+import type { Project } from '@/lib/types'; // Use the central Project type
 import { ArrowUpRight, ChevronsLeftRight, Calendar, MapPin } from 'lucide-react';
 
 interface AboutSectionProps {
@@ -47,11 +47,12 @@ export default function AboutSection({ userDetails, technicalProjects, researchP
                             <h3 className="text-3xl font-bold text-center mb-8 font-headline">Technical Projects</h3>
                             <Carousel className="w-full max-w-4xl mx-auto" opts={{ align: "start", loop: true }}>
                                 <CarouselContent>
-                                    {(technicalProjects || []).map((project, index) => (
-                                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                                    {(technicalProjects || []).map((project) => (
+                                        <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3">
                                             <div className="p-1 h-full">
                                                 <Card className="overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1 h-full">
-                                                    <Link href={project.live_link} target="_blank" rel="noopener noreferrer" className="block">
+                                                    {/* The image can be wrapped in a link */}
+                                                    <Link href={project.url} target="_blank" rel="noopener noreferrer" className="block">
                                                         {project.imageUrlId && (
                                                             <div className="aspect-video overflow-hidden">
                                                             <Image
@@ -81,11 +82,15 @@ export default function AboutSection({ userDetails, technicalProjects, researchP
                                                         </div>
                                                     </CardContent>
                                                     <CardFooter>
-                                                        <Button asChild variant="link" className="p-0 h-auto">
-                                                            <Link href={project.live_link} target="_blank" rel="noopener noreferrer">
-                                                                View Project <ArrowUpRight className="ml-1 h-4 w-4" />
-                                                            </Link>
-                                                        </Button>
+                                                        {/* --- THIS IS THE FIX --- */}
+                                                        {/* Use 'project.url' which is guaranteed to be a string */}
+                                                        {project.url && project.url !== '#' && (
+                                                            <Button asChild variant="link" className="p-0 h-auto">
+                                                                <Link href={project.url} target="_blank" rel="noopener noreferrer">
+                                                                    View Project <ArrowUpRight className="ml-1 h-4 w-4" />
+                                                                </Link>
+                                                            </Button>
+                                                        )}
                                                     </CardFooter>
                                                 </Card>
                                             </div>
@@ -101,6 +106,7 @@ export default function AboutSection({ userDetails, technicalProjects, researchP
                             </div>
                         </div>
 
+                        {/* Research Projects Section (no changes needed here) */}
                         <div>
                             <h3 className="text-3xl font-bold text-center mb-8 font-headline">Research Projects</h3>
                              <Carousel className="w-full max-w-4xl mx-auto" opts={{ align: "start", loop: true }}>

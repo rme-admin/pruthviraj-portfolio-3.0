@@ -28,6 +28,7 @@ export interface Experience {
 }
 
 export interface Project {
+  url: boolean;
   id: string;
   title: string;
   description: string;

@@ -1,3 +1,5 @@
+// src/lib/data.ts
+
 import type { PortfolioData } from './types';
 
 /**
@@ -78,7 +80,7 @@ export async function getPortfolioData(): Promise<PortfolioData | null> {
         title: proj.title,
         description: proj.description,
         imageUrlId: createFullUrl(proj.img_url),
-        url: proj.live_link,
+        url: proj.live_link || '#' ,
         date: new Date(proj.date).toLocaleDateString('en-US', { month: '2-digit', year: 'numeric' }),
         location: proj.location,
         category: proj.category,

@@ -66,7 +66,7 @@ export default function LoginPage() {
       <div className="absolute top-4 left-4">
         <Link href="/" className="flex items-center gap-2">
           <Rocket className="h-7 w-7 text-primary" />
-          <span className="font-headline text-2xl font-bold">Portfolio Pilot</span>
+          <span className="font-headline text-2xl font-bold">Pruthviraj Portfolio</span>
         </Link>
       </div>
       <Card className="w-full max-w-sm">
